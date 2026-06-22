@@ -59,7 +59,7 @@ function estimateAmount(id: string, input: UserInput) {
 }
 
 function noteFor(input: UserInput) {
-  return `${input.prefecture}・${input.age}歳・${input.household}の入力条件でブラウザ内計算しました。入力データは保存されません。`;
+  return `${input.prefecture}・${input.age}歳・${input.household}の入力条件でブラウザ内計算しました。MVP検証用の仮データ・簡易ロジックであり、正式な制度計算ではありません。入力データは保存されません。`;
 }
 
 export function calculateBenefits(input: UserInput): BenefitResult[] {
