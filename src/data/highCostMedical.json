@@ -1,0 +1,8 @@
+{
+  "incomeBrackets": [
+    { "minimumAnnualIncome": 11600000, "limitLabel": "約252,600円＋医療費に応じた加算" },
+    { "minimumAnnualIncome": 7700000, "limitLabel": "約167,400円＋医療費に応じた加算" },
+    { "minimumAnnualIncome": 3700000, "limitLabel": "約80,100円＋医療費に応じた加算" },
+    { "minimumAnnualIncome": 0, "limitLabel": "約57,600円/月" }
+  ]
+}

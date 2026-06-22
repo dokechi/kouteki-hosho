@@ -1,0 +1,6 @@
+{
+  "sicknessAllowance": { "dailyRateNumerator": 2, "dailyRateDenominator": 3, "standardMonthlyDivisor": 30 },
+  "maternityAllowance": { "dailyRateNumerator": 2, "dailyRateDenominator": 3, "standardMonthlyDivisor": 30 },
+  "childbirthLumpSum": { "amount": 500000 },
+  "burialFee": { "amount": 50000 }
+}

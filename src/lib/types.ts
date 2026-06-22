@@ -11,18 +11,24 @@ export type UserInput = {
   children: number;
 };
 
-export type Benefit = {
+export type BenefitCardData = {
   id: string;
   scene: string;
   name: string;
   summary: string;
   baseAmountLabel: string;
   eligibilityHint: string;
+};
+
+export type BenefitSource = {
+  id: string;
   sourceName: string;
   sourceUrl: string;
   checkedAt: string;
   caution: string;
 };
+
+export type Benefit = BenefitCardData & BenefitSource;
 
 export type BenefitResult = Benefit & {
   estimatedAmount: string;

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "standard-monthly-remuneration",
+    "sourceName": "全国健康保険協会 標準報酬月額・標準賞与額とは？",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3150/r138/",
+    "checkedAt": "2026-06-22",
+    "caution": "ダミー等級表によるMVP用の目安です。正確な等級は勤務先または年金事務所へ確認してください。"
+  },
+  {
+    "id": "high-cost-medical-expense",
+    "sourceName": "厚生労働省 高額療養費制度を利用される皆さまへ",
+    "sourceUrl": "https://www.mhlw.go.jp/content/000333279.pdf",
+    "checkedAt": "2026-06-22",
+    "caution": "所得区分・世帯合算・多数回該当などで変わります。MVPでは概算表示です。"
+  },
+  {
+    "id": "sickness-allowance",
+    "sourceName": "全国健康保険協会 傷病手当金",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3040/r139/",
+    "checkedAt": "2026-06-22",
+    "caution": "支給開始日以前12か月の標準報酬月額平均などで計算します。MVPでは入力月給ベースの概算です。"
+  },
+  {
+    "id": "child-allowance",
+    "sourceName": "こども家庭庁 児童手当制度",
+    "sourceUrl": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/",
+    "checkedAt": "2026-06-22",
+    "caution": "MVPでは子どもの人数から一律の仮計算をします。実際の金額は自治体へ確認してください。"
+  },
+  {
+    "id": "childbirth-lump-sum",
+    "sourceName": "全国健康保険協会 出産育児一時金",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3080/r145/",
+    "checkedAt": "2026-06-22",
+    "caution": "産科医療補償制度の対象可否などで金額が変わる場合があります。"
+  },
+  {
+    "id": "maternity-allowance",
+    "sourceName": "全国健康保険協会 出産手当金",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3090/r148/",
+    "checkedAt": "2026-06-22",
+    "caution": "標準報酬月額平均に基づくため、MVPでは概算です。"
+  },
+  {
+    "id": "childcare-leave-benefit",
+    "sourceName": "厚生労働省 育児休業給付について",
+    "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+    "checkedAt": "2026-06-22",
+    "caution": "休業開始からの期間で給付率が変わります。MVPでは休業開始当初の概算です。"
+  },
+  {
+    "id": "family-care-leave-benefit",
+    "sourceName": "厚生労働省 介護休業給付について",
+    "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00002.html",
+    "checkedAt": "2026-06-22",
+    "caution": "賃金支払い状況等で変わります。MVPでは休業前月給ベースの概算です。"
+  },
+  {
+    "id": "burial-fee",
+    "sourceName": "全国健康保険協会 埋葬料（費）",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3050/r143/",
+    "checkedAt": "2026-06-22",
+    "caution": "家族がいない場合などは埋葬費として実費範囲になる場合があります。"
+  },
+  {
+    "id": "survivor-disability-pension",
+    "sourceName": "日本年金機構 年金の給付に関する情報",
+    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/index.html",
+    "checkedAt": "2026-06-22",
+    "caution": "MVPでは金額計算をせず、概算・要確認カードとして表示します。年金事務所等へ確認してください。"
+  }
+]
