@@ -1,0 +1,122 @@
+[
+  {
+    "id": "standard-monthly-remuneration",
+    "scene": "毎月の保険料を確認したい",
+    "name": "推定標準報酬月額",
+    "summary": "入力した月給から標準報酬月額の目安を表示します。実際の等級は勤務先の届出・賞与・改定時期などで変わります。",
+    "baseAmountLabel": "入力月給に近い等級の目安",
+    "eligibilityHint": "協会けんぽ・厚生年金に加入している会社員向けの簡易推定です。",
+    "sourceName": "全国健康保険協会 標準報酬月額・標準賞与額とは？",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3150/r138/",
+    "checkedAt": "2026-06-22",
+    "caution": "ダミー等級表によるMVP用の目安です。正確な等級は勤務先または年金事務所へ確認してください。"
+  },
+  {
+    "id": "high-cost-medical-expense",
+    "scene": "病気になったら",
+    "name": "高額療養費",
+    "summary": "医療費の自己負担が高額になった場合、年齢や所得区分に応じた自己負担限度額を超えた分が払い戻される可能性があります。",
+    "baseAmountLabel": "自己負担限度額の目安",
+    "eligibilityHint": "健康保険証を使った医療費が対象。差額ベッド代や食事代など対象外があります。",
+    "sourceName": "厚生労働省 高額療養費制度を利用される皆さまへ",
+    "sourceUrl": "https://www.mhlw.go.jp/content/000333279.pdf",
+    "checkedAt": "2026-06-22",
+    "caution": "所得区分・世帯合算・多数回該当などで変わります。MVPでは概算表示です。"
+  },
+  {
+    "id": "sickness-allowance",
+    "scene": "会社を休んだら",
+    "name": "傷病手当金",
+    "summary": "業務外の病気やけがで働けず給与が十分に支払われない場合、一定条件で支給される可能性があります。",
+    "baseAmountLabel": "日額の目安",
+    "eligibilityHint": "連続する3日間を含み4日以上仕事に就けないことなどが条件です。",
+    "sourceName": "全国健康保険協会 傷病手当金",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3040/r139/",
+    "checkedAt": "2026-06-22",
+    "caution": "支給開始日以前12か月の標準報酬月額平均などで計算します。MVPでは入力月給ベースの概算です。"
+  },
+  {
+    "id": "child-allowance",
+    "scene": "子どもがいる・生まれたら",
+    "name": "児童手当",
+    "summary": "高校生年代までの子どもを養育している場合、年齢や第何子かに応じて手当を受け取れる可能性があります。",
+    "baseAmountLabel": "月額の目安",
+    "eligibilityHint": "子どもの人数・年齢・自治体手続きにより変わります。",
+    "sourceName": "こども家庭庁 児童手当制度",
+    "sourceUrl": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/",
+    "checkedAt": "2026-06-22",
+    "caution": "MVPでは子どもの人数から一律の仮計算をします。実際の金額は自治体へ確認してください。"
+  },
+  {
+    "id": "childbirth-lump-sum",
+    "scene": "子どもが生まれたら",
+    "name": "出産育児一時金",
+    "summary": "健康保険の加入者または被扶養者が出産したとき、出産費用の負担軽減のため支給される可能性があります。",
+    "baseAmountLabel": "支給額の目安",
+    "eligibilityHint": "妊娠4か月以上の出産などが対象です。",
+    "sourceName": "全国健康保険協会 出産育児一時金",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3080/r145/",
+    "checkedAt": "2026-06-22",
+    "caution": "産科医療補償制度の対象可否などで金額が変わる場合があります。"
+  },
+  {
+    "id": "maternity-allowance",
+    "scene": "出産で会社を休んだら",
+    "name": "出産手当金",
+    "summary": "出産のため会社を休み給与が支払われない場合、産前産後期間について支給される可能性があります。",
+    "baseAmountLabel": "日額の目安",
+    "eligibilityHint": "被保険者本人が出産のため休業する場合が対象です。",
+    "sourceName": "全国健康保険協会 出産手当金",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3090/r148/",
+    "checkedAt": "2026-06-22",
+    "caution": "標準報酬月額平均に基づくため、MVPでは概算です。"
+  },
+  {
+    "id": "childcare-leave-benefit",
+    "scene": "育児で会社を休んだら",
+    "name": "育児休業給付",
+    "summary": "雇用保険の被保険者が育児休業を取得する場合、休業前賃金に応じた給付を受けられる可能性があります。",
+    "baseAmountLabel": "月額の目安",
+    "eligibilityHint": "雇用保険の加入期間などの要件があります。",
+    "sourceName": "厚生労働省 育児休業給付について",
+    "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
+    "checkedAt": "2026-06-22",
+    "caution": "休業開始からの期間で給付率が変わります。MVPでは休業開始当初の概算です。"
+  },
+  {
+    "id": "family-care-leave-benefit",
+    "scene": "介護で会社を休んだら",
+    "name": "介護休業給付",
+    "summary": "家族の介護のため休業する場合、雇用保険から給付を受けられる可能性があります。",
+    "baseAmountLabel": "月額の目安",
+    "eligibilityHint": "対象家族・雇用保険加入期間・休業取得などの要件があります。",
+    "sourceName": "厚生労働省 介護休業給付について",
+    "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00002.html",
+    "checkedAt": "2026-06-22",
+    "caution": "賃金支払い状況等で変わります。MVPでは休業前月給ベースの概算です。"
+  },
+  {
+    "id": "burial-fee",
+    "scene": "万が一のとき",
+    "name": "埋葬料",
+    "summary": "健康保険の被保険者が亡くなった場合、埋葬を行う家族に支給される可能性があります。",
+    "baseAmountLabel": "支給額の目安",
+    "eligibilityHint": "被保険者により生計を維持されていた方などが対象です。",
+    "sourceName": "全国健康保険協会 埋葬料（費）",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3050/r143/",
+    "checkedAt": "2026-06-22",
+    "caution": "家族がいない場合などは埋葬費として実費範囲になる場合があります。"
+  },
+  {
+    "id": "survivor-disability-pension",
+    "scene": "障害・万が一のとき",
+    "name": "遺族年金・障害年金（概算・要確認）",
+    "summary": "死亡や障害状態になった場合、加入状況・家族構成・納付要件などにより年金を受け取れる可能性があります。",
+    "baseAmountLabel": "判定",
+    "eligibilityHint": "年金加入歴、配偶者・子の有無、障害等級など詳細確認が必要です。",
+    "sourceName": "日本年金機構 年金の給付に関する情報",
+    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/index.html",
+    "checkedAt": "2026-06-22",
+    "caution": "MVPでは金額計算をせず、概算・要確認カードとして表示します。年金事務所等へ確認してください。"
+  }
+]
