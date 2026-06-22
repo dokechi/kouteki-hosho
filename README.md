@@ -19,7 +19,7 @@ npm run dev
 - データベースは使いません。
 - 計算はブラウザ内で行います。
 - AIに計算させません。
-- 制度データは `src/data/benefits.json` の静的JSONから読みます。
+- 制度データは `src/data/` 配下に役割ごとに分割した静的JSONから読みます。
 - 教育費、生活費、必要保障額、自治体制度、健保組合独自給付は初期版では扱いません。
 
 ## ファイル構成
@@ -35,7 +35,15 @@ src/
   components/
     BenefitCard.tsx   # 診断結果カード
   data/
-    benefits.json     # 制度カードの静的データ
+    benefitCards.json           # 画面に表示する制度カード文言
+    prefectures.json            # 入力フォームの都道府県選択肢
+    standardRemuneration.json   # 標準報酬月額のMVP用仮等級データ
+    highCostMedical.json        # 高額療養費のMVP用仮所得区分データ
+    healthBenefits.json         # 健康保険系給付のMVP用仮計算パラメータ
+    employmentBenefits.json     # 雇用保険系給付のMVP用仮計算パラメータ
+    pensionBenefits.json        # 年金系カードのMVP用仮表示データ
+    childAllowance.json         # 児童手当のMVP用仮計算パラメータ
+    sources.json                # 出典名、出典URL、確認日、注意書き
   lib/
     calculator.ts     # 概算ロジック
     types.ts          # 型定義
@@ -43,9 +51,19 @@ src/
 
 ## 制度データの追加場所
 
-制度カードを追加・修正する場合は、まず `src/data/benefits.json` に制度名、場面、説明、出典名、出典URL、確認日、注意書きを追加してください。
+現時点のデータはMVP用の仮データであり、正式な制度計算ではありません。Excel/スプレッドシート由来の制度データを投入する場合は、役割ごとに以下のJSONへ分けて追加・修正してください。
 
-金額や判定の概算ロジックを変える場合は、`src/lib/calculator.ts` の `estimateAmount` を更新します。
+- `src/data/benefitCards.json`: 制度カードの表示順、制度ID、場面、制度名、概要、金額ラベル、対象者の目安を入れます。
+- `src/data/prefectures.json`: 入力フォームで選択する都道府県名を入れます。
+- `src/data/standardRemuneration.json`: 標準報酬月額の等級・金額など、標準報酬月額推定に使うデータを入れます。
+- `src/data/highCostMedical.json`: 高額療養費の所得区分や自己負担限度額表示に使うデータを入れます。
+- `src/data/healthBenefits.json`: 傷病手当金、出産育児一時金、出産手当金、埋葬料など健康保険系給付の計算パラメータを入れます。
+- `src/data/employmentBenefits.json`: 育児休業給付、介護休業給付など雇用保険系給付の計算パラメータを入れます。
+- `src/data/pensionBenefits.json`: 遺族年金・障害年金など年金系カードの判定表示や計算パラメータを入れます。
+- `src/data/childAllowance.json`: 児童手当の月額や子ども人数に応じた計算パラメータを入れます。
+- `src/data/sources.json`: 制度IDごとに出典名、出典URL、確認日、注意書きを必ず入れます。
+
+制度カードを追加する場合は、`benefitCards.json` と `sources.json` に同じ `id` のデータを追加してください。金額や判定の概算ロジックを変える場合は、分割JSONの値を優先して更新し、必要に応じて `src/lib/calculator.ts` の `estimateAmount` を更新します。
 
 ## 初期カード
 
