@@ -1,3 +1,512 @@
 {
-  "monthlyAmounts": [58000, 68000, 78000, 88000, 98000, 110000, 126000, 142000, 160000, 180000, 200000, 220000, 240000, 260000, 280000, 300000, 320000, 340000, 360000, 380000, 410000, 440000, 470000, 500000, 530000, 560000, 590000, 620000, 650000]
+  "schemaVersion": "1.0.0",
+  "description": "協会けんぽ・厚生年金の標準報酬月額等級データ。月給から標準報酬月額を推定するために使用する。",
+  "sourceId": "R8_PREMIUM_TABLE",
+  "checkedAt": "2026-06-22",
+  "note": "健康保険は第1級〜第50級、厚生年金は第1級〜第32級。厚生年金の等級外となる健康保険上位等級は pensionGrade を null とする。",
+  "matchingRule": "monthlySalaryLower が null の行は monthlySalary < monthlySalaryUpper、monthlySalaryUpper が null の行は monthlySalary >= monthlySalaryLower、それ以外は monthlySalary >= monthlySalaryLower && monthlySalary < monthlySalaryUpper。",
+  "monthlyAmounts": [
+    58000,
+    68000,
+    78000,
+    88000,
+    98000,
+    104000,
+    110000,
+    118000,
+    126000,
+    134000,
+    142000,
+    150000,
+    160000,
+    170000,
+    180000,
+    190000,
+    200000,
+    220000,
+    240000,
+    260000,
+    280000,
+    300000,
+    320000,
+    340000,
+    360000,
+    380000,
+    410000,
+    440000,
+    470000,
+    500000,
+    530000,
+    560000,
+    590000,
+    620000,
+    650000,
+    680000,
+    710000,
+    750000,
+    790000,
+    830000,
+    880000,
+    930000,
+    980000,
+    1030000,
+    1090000,
+    1150000,
+    1210000,
+    1270000,
+    1330000,
+    1390000
+  ],
+  "grades": [
+    {
+      "healthGrade": 1,
+      "pensionGrade": null,
+      "standardMonthly": 58000,
+      "monthlySalaryLower": null,
+      "monthlySalaryUpper": 63000,
+      "rangeRule": "上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 2,
+      "pensionGrade": null,
+      "standardMonthly": 68000,
+      "monthlySalaryLower": 63000,
+      "monthlySalaryUpper": 73000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 3,
+      "pensionGrade": null,
+      "standardMonthly": 78000,
+      "monthlySalaryLower": 73000,
+      "monthlySalaryUpper": 83000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 4,
+      "pensionGrade": 1,
+      "standardMonthly": 88000,
+      "monthlySalaryLower": 83000,
+      "monthlySalaryUpper": 93000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 5,
+      "pensionGrade": 2,
+      "standardMonthly": 98000,
+      "monthlySalaryLower": 93000,
+      "monthlySalaryUpper": 101000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 6,
+      "pensionGrade": 3,
+      "standardMonthly": 104000,
+      "monthlySalaryLower": 101000,
+      "monthlySalaryUpper": 107000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 7,
+      "pensionGrade": 4,
+      "standardMonthly": 110000,
+      "monthlySalaryLower": 107000,
+      "monthlySalaryUpper": 114000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 8,
+      "pensionGrade": 5,
+      "standardMonthly": 118000,
+      "monthlySalaryLower": 114000,
+      "monthlySalaryUpper": 122000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 9,
+      "pensionGrade": 6,
+      "standardMonthly": 126000,
+      "monthlySalaryLower": 122000,
+      "monthlySalaryUpper": 130000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 10,
+      "pensionGrade": 7,
+      "standardMonthly": 134000,
+      "monthlySalaryLower": 130000,
+      "monthlySalaryUpper": 138000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 11,
+      "pensionGrade": 8,
+      "standardMonthly": 142000,
+      "monthlySalaryLower": 138000,
+      "monthlySalaryUpper": 146000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 12,
+      "pensionGrade": 9,
+      "standardMonthly": 150000,
+      "monthlySalaryLower": 146000,
+      "monthlySalaryUpper": 155000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 13,
+      "pensionGrade": 10,
+      "standardMonthly": 160000,
+      "monthlySalaryLower": 155000,
+      "monthlySalaryUpper": 165000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 14,
+      "pensionGrade": 11,
+      "standardMonthly": 170000,
+      "monthlySalaryLower": 165000,
+      "monthlySalaryUpper": 175000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 15,
+      "pensionGrade": 12,
+      "standardMonthly": 180000,
+      "monthlySalaryLower": 175000,
+      "monthlySalaryUpper": 185000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 16,
+      "pensionGrade": 13,
+      "standardMonthly": 190000,
+      "monthlySalaryLower": 185000,
+      "monthlySalaryUpper": 195000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 17,
+      "pensionGrade": 14,
+      "standardMonthly": 200000,
+      "monthlySalaryLower": 195000,
+      "monthlySalaryUpper": 210000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 18,
+      "pensionGrade": 15,
+      "standardMonthly": 220000,
+      "monthlySalaryLower": 210000,
+      "monthlySalaryUpper": 230000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 19,
+      "pensionGrade": 16,
+      "standardMonthly": 240000,
+      "monthlySalaryLower": 230000,
+      "monthlySalaryUpper": 250000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 20,
+      "pensionGrade": 17,
+      "standardMonthly": 260000,
+      "monthlySalaryLower": 250000,
+      "monthlySalaryUpper": 270000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 21,
+      "pensionGrade": 18,
+      "standardMonthly": 280000,
+      "monthlySalaryLower": 270000,
+      "monthlySalaryUpper": 290000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 22,
+      "pensionGrade": 19,
+      "standardMonthly": 300000,
+      "monthlySalaryLower": 290000,
+      "monthlySalaryUpper": 310000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 23,
+      "pensionGrade": 20,
+      "standardMonthly": 320000,
+      "monthlySalaryLower": 310000,
+      "monthlySalaryUpper": 330000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 24,
+      "pensionGrade": 21,
+      "standardMonthly": 340000,
+      "monthlySalaryLower": 330000,
+      "monthlySalaryUpper": 350000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 25,
+      "pensionGrade": 22,
+      "standardMonthly": 360000,
+      "monthlySalaryLower": 350000,
+      "monthlySalaryUpper": 370000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 26,
+      "pensionGrade": 23,
+      "standardMonthly": 380000,
+      "monthlySalaryLower": 370000,
+      "monthlySalaryUpper": 395000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 27,
+      "pensionGrade": 24,
+      "standardMonthly": 410000,
+      "monthlySalaryLower": 395000,
+      "monthlySalaryUpper": 425000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 28,
+      "pensionGrade": 25,
+      "standardMonthly": 440000,
+      "monthlySalaryLower": 425000,
+      "monthlySalaryUpper": 455000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 29,
+      "pensionGrade": 26,
+      "standardMonthly": 470000,
+      "monthlySalaryLower": 455000,
+      "monthlySalaryUpper": 485000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 30,
+      "pensionGrade": 27,
+      "standardMonthly": 500000,
+      "monthlySalaryLower": 485000,
+      "monthlySalaryUpper": 515000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 31,
+      "pensionGrade": 28,
+      "standardMonthly": 530000,
+      "monthlySalaryLower": 515000,
+      "monthlySalaryUpper": 545000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 32,
+      "pensionGrade": 29,
+      "standardMonthly": 560000,
+      "monthlySalaryLower": 545000,
+      "monthlySalaryUpper": 575000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 33,
+      "pensionGrade": 30,
+      "standardMonthly": 590000,
+      "monthlySalaryLower": 575000,
+      "monthlySalaryUpper": 605000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 34,
+      "pensionGrade": 31,
+      "standardMonthly": 620000,
+      "monthlySalaryLower": 605000,
+      "monthlySalaryUpper": 635000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 35,
+      "pensionGrade": 32,
+      "standardMonthly": 650000,
+      "monthlySalaryLower": 635000,
+      "monthlySalaryUpper": 665000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 36,
+      "pensionGrade": null,
+      "standardMonthly": 680000,
+      "monthlySalaryLower": 665000,
+      "monthlySalaryUpper": 695000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 37,
+      "pensionGrade": null,
+      "standardMonthly": 710000,
+      "monthlySalaryLower": 695000,
+      "monthlySalaryUpper": 730000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 38,
+      "pensionGrade": null,
+      "standardMonthly": 750000,
+      "monthlySalaryLower": 730000,
+      "monthlySalaryUpper": 770000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 39,
+      "pensionGrade": null,
+      "standardMonthly": 790000,
+      "monthlySalaryLower": 770000,
+      "monthlySalaryUpper": 810000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 40,
+      "pensionGrade": null,
+      "standardMonthly": 830000,
+      "monthlySalaryLower": 810000,
+      "monthlySalaryUpper": 855000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 41,
+      "pensionGrade": null,
+      "standardMonthly": 880000,
+      "monthlySalaryLower": 855000,
+      "monthlySalaryUpper": 905000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 42,
+      "pensionGrade": null,
+      "standardMonthly": 930000,
+      "monthlySalaryLower": 905000,
+      "monthlySalaryUpper": 955000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 43,
+      "pensionGrade": null,
+      "standardMonthly": 980000,
+      "monthlySalaryLower": 955000,
+      "monthlySalaryUpper": 1005000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 44,
+      "pensionGrade": null,
+      "standardMonthly": 1030000,
+      "monthlySalaryLower": 1005000,
+      "monthlySalaryUpper": 1055000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 45,
+      "pensionGrade": null,
+      "standardMonthly": 1090000,
+      "monthlySalaryLower": 1055000,
+      "monthlySalaryUpper": 1115000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 46,
+      "pensionGrade": null,
+      "standardMonthly": 1150000,
+      "monthlySalaryLower": 1115000,
+      "monthlySalaryUpper": 1175000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 47,
+      "pensionGrade": null,
+      "standardMonthly": 1210000,
+      "monthlySalaryLower": 1175000,
+      "monthlySalaryUpper": 1235000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 48,
+      "pensionGrade": null,
+      "standardMonthly": 1270000,
+      "monthlySalaryLower": 1235000,
+      "monthlySalaryUpper": 1295000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 49,
+      "pensionGrade": null,
+      "standardMonthly": 1330000,
+      "monthlySalaryLower": 1295000,
+      "monthlySalaryUpper": 1355000,
+      "rangeRule": "下限以上・上限未満",
+      "sourceId": "R8_PREMIUM_TABLE"
+    },
+    {
+      "healthGrade": 50,
+      "pensionGrade": null,
+      "standardMonthly": 1390000,
+      "monthlySalaryLower": 1355000,
+      "monthlySalaryUpper": null,
+      "rangeRule": "下限以上",
+      "sourceId": "R8_PREMIUM_TABLE"
+    }
+  ]
 }
