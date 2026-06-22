@@ -59,3 +59,15 @@ src/
 - 介護休業給付
 - 埋葬料
 - 遺族年金・障害年金（概算・要確認）
+
+## CI
+
+GitHub Actions で Pull Request と `main` ブランチへの push 時に CI を実行します。CI では Node.js 20 を使い、以下のコマンドを順番に実行します。
+
+```bash
+npm install
+npm run typecheck
+npm run build
+```
+
+ローカルで CI と同じ確認をする場合も、上記のコマンドを順番に実行してください。GitHub 上では Pull Request の Checks タブ、またはリポジトリの Actions タブから実行結果を確認できます。
