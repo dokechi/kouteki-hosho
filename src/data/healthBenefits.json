@@ -1,6 +1,204 @@
 {
-  "sicknessAllowance": { "dailyRateNumerator": 2, "dailyRateDenominator": 3, "standardMonthlyDivisor": 30 },
-  "maternityAllowance": { "dailyRateNumerator": 2, "dailyRateDenominator": 3, "standardMonthlyDivisor": 30 },
-  "childbirthLumpSum": { "amount": 500000 },
-  "burialFee": { "amount": 50000 }
+  "schemaVersion": "1.0.0",
+  "description": "協会けんぽの健康保険系給付データ。傷病手当金、出産手当金、出産育児一時金、埋葬料・埋葬費・家族埋葬料の概算表示に使用する。",
+  "checkedAt": "2026-06-22",
+  "note": "既存アプリ互換のため sicknessAllowance / maternityAllowance / childbirthLumpSum / burialFee の基本キーは維持する。詳細判定には benefits 配列または variants を使用する。",
+  "sicknessAllowance": {
+    "benefitId": "sickness_allowance",
+    "displayName": "傷病手当金",
+    "amountType": "formula",
+    "rate": 0.6666666667,
+    "dailyRateNumerator": 2,
+    "dailyRateDenominator": 3,
+    "standardMonthlyDivisor": 30,
+    "durationOrDays": "通算1年6か月",
+    "formulaText": "ROUND(ROUND(平均標準報酬月額/30,-1)*2/3,0)",
+    "plainFormulaText": "支給開始日以前12か月の各月の標準報酬月額を平均した額を30で割り、その3分の2相当を日額目安とする。",
+    "eligibilitySummary": "業務外の病気・ケガで働けず、給与が十分に支払われない場合。",
+    "sourceId": "SICKNESS_ALLOWANCE",
+    "notes": "待期3日、給与支払い、加入12か月未満の扱いに注意。"
+  },
+  "maternityAllowance": {
+    "benefitId": "maternity_allowance",
+    "displayName": "出産手当金",
+    "amountType": "formula",
+    "rate": 0.6666666667,
+    "dailyRateNumerator": 2,
+    "dailyRateDenominator": 3,
+    "standardMonthlyDivisor": 30,
+    "durationOrDays": "産前42日(多胎98日)+産後56日",
+    "formulaText": "ROUND(ROUND(平均標準報酬月額/30,-1)*2/3,0)",
+    "plainFormulaText": "支給開始日以前12か月の各月の標準報酬月額を平均した額を30で割り、その3分の2相当を日額目安とする。",
+    "eligibilitySummary": "被保険者本人が出産で休み、給与が十分に支払われない場合。",
+    "sourceId": "MATERNITY_ALLOWANCE",
+    "notes": "被扶養者は対象外。"
+  },
+  "childbirthLumpSum": {
+    "benefitId": "childbirth_lump_sum_standard",
+    "displayName": "出産育児一時金",
+    "amountType": "fixed",
+    "amount": 500000,
+    "standardAmount": 500000,
+    "reducedAmount": 488000,
+    "durationOrDays": "1児ごと",
+    "sourceId": "CHILDBIRTH_LUMP_SUM",
+    "notes": "多胎は胎児数分。産科医療補償制度の対象可否等で金額が変わる場合がある。",
+    "variants": [
+      {
+        "benefitId": "childbirth_lump_sum_standard",
+        "displayName": "出産育児一時金 標準",
+        "amountType": "fixed",
+        "amount": 500000,
+        "durationOrDays": "1児ごと",
+        "formulaText": "500000",
+        "eligibilitySummary": "産科医療補償制度加入機関で妊娠22週以降の出産等。",
+        "sourceId": "CHILDBIRTH_LUMP_SUM",
+        "notes": "多胎は胎児数分。"
+      },
+      {
+        "benefitId": "childbirth_lump_sum_reduced",
+        "displayName": "出産育児一時金 48.8万円区分",
+        "amountType": "fixed",
+        "amount": 488000,
+        "durationOrDays": "1児ごと",
+        "formulaText": "488000",
+        "eligibilitySummary": "産科医療補償制度未加入機関等、または妊娠22週未満等の区分。",
+        "sourceId": "CHILDBIRTH_LUMP_SUM",
+        "notes": "詳細条件は公式確認。"
+      }
+    ]
+  },
+  "burialFee": {
+    "benefitId": "burial_fee_insured",
+    "displayName": "埋葬料・埋葬費・家族埋葬料",
+    "amountType": "fixed_or_cap",
+    "amount": 50000,
+    "insuredBurialAllowance": 50000,
+    "burialExpenseCap": 50000,
+    "familyBurialAllowance": 50000,
+    "sourceId": "BURIAL_FEE",
+    "notes": "被保険者死亡時の埋葬料、該当者がいない場合の埋葬費、被扶養者死亡時の家族埋葬料を区分して扱う。",
+    "variants": [
+      {
+        "benefitId": "burial_fee_insured",
+        "displayName": "埋葬料",
+        "amountType": "fixed",
+        "amount": 50000,
+        "durationOrDays": "死亡時",
+        "formulaText": "50000",
+        "eligibilitySummary": "被保険者死亡時、生計維持されていた人が申請。",
+        "sourceId": "BURIAL_FEE",
+        "notes": "該当者がいない場合は埋葬費。"
+      },
+      {
+        "benefitId": "burial_expense",
+        "displayName": "埋葬費",
+        "amountType": "cap",
+        "amount": 50000,
+        "capAmount": 50000,
+        "durationOrDays": "死亡時",
+        "formulaText": "min(実費,50000)",
+        "eligibilitySummary": "生計維持されていた人がいない場合、実際に埋葬した人が申請。",
+        "sourceId": "BURIAL_FEE",
+        "notes": "上限5万円。"
+      },
+      {
+        "benefitId": "family_burial_fee",
+        "displayName": "家族埋葬料",
+        "amountType": "fixed",
+        "amount": 50000,
+        "durationOrDays": "被扶養者死亡時",
+        "formulaText": "50000",
+        "eligibilitySummary": "被扶養者が死亡し被保険者が申請。",
+        "sourceId": "BURIAL_FEE",
+        "notes": null
+      }
+    ]
+  },
+  "benefits": [
+    {
+      "benefitId": "sickness_allowance",
+      "displayName": "傷病手当金",
+      "amountType": "formula",
+      "amount": null,
+      "rate": 0.6666666667,
+      "durationOrDays": "通算1年6か月",
+      "formulaText": "ROUND(ROUND(平均標準報酬月額/30,-1)*2/3,0)",
+      "eligibilitySummary": "業務外の病気・ケガで働けず給与が十分でない場合。",
+      "sourceId": "SICKNESS_ALLOWANCE",
+      "notes": "待期3日、給与支払い、加入12か月未満の扱いに注意。"
+    },
+    {
+      "benefitId": "maternity_allowance",
+      "displayName": "出産手当金",
+      "amountType": "formula",
+      "amount": null,
+      "rate": 0.6666666667,
+      "durationOrDays": "産前42日(多胎98日)+産後56日",
+      "formulaText": "ROUND(ROUND(平均標準報酬月額/30,-1)*2/3,0)",
+      "eligibilitySummary": "被保険者本人が出産で休み給与が十分でない場合。",
+      "sourceId": "MATERNITY_ALLOWANCE",
+      "notes": "被扶養者は対象外。"
+    },
+    {
+      "benefitId": "childbirth_lump_sum_standard",
+      "displayName": "出産育児一時金 標準",
+      "amountType": "fixed",
+      "amount": 500000,
+      "rate": null,
+      "durationOrDays": "1児ごと",
+      "formulaText": "500000",
+      "eligibilitySummary": "産科医療補償制度加入機関で妊娠22週以降の出産等。",
+      "sourceId": "CHILDBIRTH_LUMP_SUM",
+      "notes": "多胎は胎児数分。"
+    },
+    {
+      "benefitId": "childbirth_lump_sum_reduced",
+      "displayName": "出産育児一時金 48.8万円区分",
+      "amountType": "fixed",
+      "amount": 488000,
+      "rate": null,
+      "durationOrDays": "1児ごと",
+      "formulaText": "488000",
+      "eligibilitySummary": "制度未加入機関等/22週未満等の区分。",
+      "sourceId": "CHILDBIRTH_LUMP_SUM",
+      "notes": "詳細条件は公式確認。"
+    },
+    {
+      "benefitId": "burial_fee_insured",
+      "displayName": "埋葬料",
+      "amountType": "fixed",
+      "amount": 50000,
+      "rate": null,
+      "durationOrDays": "死亡時",
+      "formulaText": "50000",
+      "eligibilitySummary": "被保険者死亡時、生計維持されていた人が申請。",
+      "sourceId": "BURIAL_FEE",
+      "notes": "該当者がいない場合は埋葬費。"
+    },
+    {
+      "benefitId": "burial_expense",
+      "displayName": "埋葬費",
+      "amountType": "cap",
+      "amount": 50000,
+      "rate": null,
+      "durationOrDays": "死亡時",
+      "formulaText": "min(実費,50000)",
+      "eligibilitySummary": "生計維持されていた人がいない場合、実際に埋葬した人が申請。",
+      "sourceId": "BURIAL_FEE",
+      "notes": "上限5万円。"
+    },
+    {
+      "benefitId": "family_burial_fee",
+      "displayName": "家族埋葬料",
+      "amountType": "fixed",
+      "amount": 50000,
+      "rate": null,
+      "durationOrDays": "被扶養者死亡時",
+      "formulaText": "50000",
+      "eligibilitySummary": "被扶養者が死亡し被保険者が申請。",
+      "sourceId": "BURIAL_FEE",
+      "notes": null
+    }
+  ]
 }
