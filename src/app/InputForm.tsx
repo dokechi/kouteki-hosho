@@ -5,13 +5,6 @@ import { BenefitCard } from "@/components/BenefitCard";
 import { calculateBenefits } from "@/lib/calculator";
 import type { InsuranceStatus, UserInput } from "@/lib/types";
 
-const incomeCopy: Record<InsuranceStatus, { label: string; help: string }> = {
-  employee: { label: "年収", help: "税込の年収を入力してください。ボーナス込みでOKです。" },
-  national: { label: "年間所得の目安", help: "売上から経費を引いた金額を入力してください。" },
-  dependent: { label: "本人の年収見込み", help: "扶養に入っている本人の年収を入力してください。" },
-  unknown: { label: "年収", help: "分かる範囲の税込年収を入力してください。" },
-};
-
 type SelectValue = "" | "yes" | "no";
 
 type FormInput = {
@@ -43,16 +36,17 @@ const toNumber = (value: string) => {
 function validateInput(input: FormInput): { errors: string[]; userInput: UserInput | null } {
   const errors: string[] = [];
   const age = toNumber(input.age);
-  const annualIncome = toNumber(input.annualIncome);
+  const annualIncomeManYen = toNumber(input.annualIncome);
   const childrenCount = toNumber(input.childrenCount);
 
   if (age === null || age < 0) errors.push("年齢を入力してください");
   if (!input.insuranceStatus) errors.push("加入状況を選んでください");
-  if (annualIncome === null || annualIncome < 0) errors.push("年収を入力してください");
+  if (annualIncomeManYen === null || annualIncomeManYen < 0) errors.push("年収を入力してください");
   if (!input.hasSpouse) errors.push("配偶者の有無を選んでください");
   if (!input.hasChildren) errors.push("子どもの有無を選んでください");
 
   const hasChildren = input.hasChildren === "yes";
+  const annualIncome = annualIncomeManYen === null ? null : annualIncomeManYen * 10000;
   if (hasChildren) {
     if (childrenCount === null || childrenCount < 1 || childrenCount > 10 || !Number.isInteger(childrenCount)) errors.push("子どもの人数を入力してください");
 
@@ -96,8 +90,6 @@ export function InputForm() {
   const [errors, setErrors] = useState<string[]>([]);
   const [validatedInput, setValidatedInput] = useState<UserInput | null>(null);
   const results = useMemo(() => validatedInput ? calculateBenefits(validatedInput) : [], [validatedInput]);
-  const income = input.insuranceStatus ? incomeCopy[input.insuranceStatus] : incomeCopy.unknown;
-
   const updateNumber = (key: "age" | "annualIncome" | "childrenCount") => (value: string) => {
     setInput((current) => {
       if (key !== "childrenCount") return { ...current, [key]: value };
@@ -137,6 +129,7 @@ export function InputForm() {
     <>
       <form className="formGrid" onSubmit={submitForm} noValidate>
         <label>年齢<input type="number" min="0" placeholder="例：31" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
+        <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="400" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
         <label>加入状況<select value={input.insuranceStatus} onChange={(e) => setInput({ ...input, insuranceStatus: e.target.value as FormInput["insuranceStatus"] })}>
           <option value="">選択してください</option>
           <option value="employee">会社の社会保険に入っている</option>
@@ -144,9 +137,8 @@ export function InputForm() {
           <option value="national">国民健康保険に入っている</option>
           <option value="unknown">よく分からない</option>
         </select><span className="helpText">給与明細で保険料が引かれている方は、会社の社会保険を選んでください。</span></label>
-        <label>{income.label}（円）<input type="number" min="0" step="10000" placeholder="例：4000000" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="helpText">{income.help}</span></label>
         <label>配偶者の有無<select value={input.hasSpouse} onChange={(e) => setInput({ ...input, hasSpouse: e.target.value as SelectValue })}><option value="">選択してください</option><option value="yes">あり</option><option value="no">なし</option></select></label>
-        <label>子どもの有無<select value={input.hasChildren} onChange={(e) => updateHasChildren(e.target.value as SelectValue)}><option value="">選択してください</option><option value="yes">あり</option><option value="no">なし</option></select><span className="helpText">子ども向けの制度を確認するために使います。</span></label>
+        <label>子どもの有無<select value={input.hasChildren} onChange={(e) => updateHasChildren(e.target.value as SelectValue)}><option value="">選択してください</option><option value="yes">あり</option><option value="no">なし</option></select></label>
         {input.hasChildren === "yes" && <label>子どもの人数<input type="number" min="1" max="10" placeholder="例：1" value={input.childrenCount} onChange={(e) => updateNumber("childrenCount")(e.target.value)} /></label>}
         {input.hasChildren === "yes" && input.childAges.map((age, index) => <label key={index}>子ども{index + 1}人目の年齢<input type="number" min="0" max="30" placeholder="例：3" value={age} onChange={(e) => updateChildAge(index, e.target.value)} /></label>)}
         {errors.length > 0 && <div className="errorBox" role="alert"><p>入力内容を確認してください。</p><ul>{errors.map((error) => <li key={error}>{error}</li>)}</ul></div>}

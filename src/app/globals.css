@@ -14,6 +14,9 @@ h3 { font-size: 1.1rem; margin: 0 0 6px; }
 .formGrid { display: grid; gap: 16px; margin: 24px 0; }
 label { display: grid; gap: 6px; font-weight: 700; }
 input, select { width: 100%; font: inherit; padding: 14px; border: 1px solid #b9c0ca; border-radius: 10px; background: #fff; }
+.inputWithUnit { display: grid; grid-template-columns: 1fr auto; align-items: center; border: 1px solid #b9c0ca; border-radius: 10px; background: #fff; overflow: hidden; }
+.inputWithUnit input { border: 0; border-radius: 0; }
+.unitText { padding: 0 14px 0 6px; font-weight: 700; color: #17202a; white-space: nowrap; }
 button, .button { display: inline-block; width: 100%; border: 0; border-radius: 999px; background: #1f5fbf; color: #fff; padding: 16px 22px; font: inherit; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
 .helpText { font-size: .9rem; font-weight: 500; color: #516070; }
 .errorBox { grid-column: 1 / -1; border: 1px solid #d93025; background: #fff5f5; color: #8a1f17; border-radius: 10px; padding: 14px 16px; }
