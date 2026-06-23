@@ -40,6 +40,17 @@ jobs:
       - name: Build Next.js static export
         run: npm run build
 
+      - name: Inspect exported files
+        run: |
+          ls -la
+          ls -la out
+          find out -maxdepth 2 -type f | sort | sed -n '1,120p'
+          test -f out/index.html
+          grep -n "病気・ケガ・失業・出産・介護" out/index.html
+
+      - name: Disable Jekyll
+        run: touch out/.nojekyll
+
       - name: Upload GitHub Pages artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
