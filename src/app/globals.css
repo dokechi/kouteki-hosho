@@ -16,6 +16,9 @@ label { display: grid; gap: 6px; font-weight: 700; }
 input, select { width: 100%; font: inherit; padding: 14px; border: 1px solid #b9c0ca; border-radius: 10px; background: #fff; }
 button, .button { display: inline-block; width: 100%; border: 0; border-radius: 999px; background: #1f5fbf; color: #fff; padding: 16px 22px; font: inherit; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
 .helpText { font-size: .9rem; font-weight: 500; color: #516070; }
+.errorBox { grid-column: 1 / -1; border: 1px solid #d93025; background: #fff5f5; color: #8a1f17; border-radius: 10px; padding: 14px 16px; }
+.errorBox p { margin: 0 0 6px; font-weight: 800; }
+.errorBox ul { margin: 0; padding-left: 20px; }
 .resultSection { margin-top: 40px; }
 .resultTitle { font-size: clamp(2rem, 7vw, 3.5rem); letter-spacing: -.04em; line-height: 1.18; margin-bottom: 12px; }
 .resultLead { font-size: 1.15rem; font-weight: 700; margin-bottom: 18px; }
