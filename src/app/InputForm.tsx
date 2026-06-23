@@ -3,45 +3,73 @@
 import { useMemo, useState } from "react";
 import { BenefitCard } from "@/components/BenefitCard";
 import { calculateBenefits } from "@/lib/calculator";
-import prefectures from "@/data/prefectures.json";
-import type { Household, UserInput } from "@/lib/types";
+import type { InsuranceStatus, UserInput } from "@/lib/types";
+
+const incomeCopy: Record<InsuranceStatus, { label: string; help: string }> = {
+  employee: { label: "年収", help: "勤務先からもらう税込年収を入力してください。ボーナス込み。副業・不動産・株の利益は含めません。" },
+  national: { label: "年間所得の目安", help: "自営業・フリーランスの方は、売上ではなく経費を引いた後の金額に近いものを入力してください。" },
+  dependent: { label: "本人の年収見込み", help: "扶養に入っている本人の年収を入力してください。" },
+  unknown: { label: "年収", help: "分かる範囲で税込年収を入力してください。結果は概算として表示します。" },
+};
 
 export function InputForm() {
   const [input, setInput] = useState<UserInput>({
     age: 35,
-    prefecture: "東京都",
+    insuranceStatus: "employee",
     annualIncome: 5000000,
-    monthlySalary: 320000,
-    healthInsurancePremium: 16000,
-    pensionPremium: 30000,
-    household: "withChildren",
-    children: 1,
+    hasSpouse: true,
+    hasChildren: true,
+    childrenCount: 1,
+    childAges: [3],
   });
   const [submitted, setSubmitted] = useState(true);
   const results = useMemo(() => calculateBenefits(input), [input]);
+  const income = incomeCopy[input.insuranceStatus];
 
-  const updateNumber = (key: keyof UserInput) => (value: string) =>
-    setInput((current) => ({ ...current, [key]: Number(value) }));
+  const updateNumber = (key: "age" | "annualIncome" | "childrenCount") => (value: string) => {
+    const numberValue = Number(value);
+    setInput((current) => {
+      if (key !== "childrenCount") return { ...current, [key]: numberValue };
+      const childrenCount = Math.max(0, numberValue);
+      return { ...current, childrenCount, childAges: Array.from({ length: childrenCount }, (_, index) => current.childAges[index] ?? 0) };
+    });
+  };
+
+  const updateHasChildren = (hasChildren: boolean) => {
+    setInput((current) => ({
+      ...current,
+      hasChildren,
+      childrenCount: hasChildren ? Math.max(1, current.childrenCount) : 0,
+      childAges: hasChildren ? (current.childAges.length > 0 ? current.childAges : [0]) : [],
+    }));
+  };
+
+  const updateChildAge = (index: number, value: string) => setInput((current) => ({
+    ...current,
+    childAges: current.childAges.map((age, currentIndex) => currentIndex === index ? Number(value) : age),
+  }));
 
   return (
     <>
       <form className="formGrid" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
-        <label>年齢<input type="number" min="18" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
-        <label>都道府県<select value={input.prefecture} onChange={(e) => setInput({ ...input, prefecture: e.target.value })}>{prefectures.map((pref) => <option key={pref}>{pref}</option>)}</select></label>
-        <label>年収（円）<input type="number" min="0" step="10000" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /></label>
-        <label>月給（円）<input type="number" min="0" step="1000" value={input.monthlySalary} onChange={(e) => updateNumber("monthlySalary")(e.target.value)} /></label>
-        <label>健康保険料（円/月）<input type="number" min="0" step="100" value={input.healthInsurancePremium} onChange={(e) => updateNumber("healthInsurancePremium")(e.target.value)} /></label>
-        <label>厚生年金保険料（円/月）<input type="number" min="0" step="100" value={input.pensionPremium} onChange={(e) => updateNumber("pensionPremium")(e.target.value)} /></label>
-        <label>家族構成<select value={input.household} onChange={(e) => setInput({ ...input, household: e.target.value as Household })}><option value="single">単身</option><option value="couple">夫婦</option><option value="withChildren">子どもあり</option><option value="caregiving">介護家族あり</option></select></label>
-        <label>子どもの人数<input type="number" min="0" value={input.children} onChange={(e) => updateNumber("children")(e.target.value)} /></label>
+        <label>年齢<input type="number" min="0" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
+        <label>加入状況<select value={input.insuranceStatus} onChange={(e) => setInput({ ...input, insuranceStatus: e.target.value as InsuranceStatus })}>
+          <option value="employee">勤務先の社会保険に入っている</option>
+          <option value="dependent">家族の扶養に入っている</option>
+          <option value="national">国民健康保険に入っている</option>
+          <option value="unknown">よく分からない</option>
+        </select><span className="helpText">給与明細で「健康保険料」「厚生年金保険料」が引かれている人は勤務先の社会保険です。</span></label>
+        <label>{income.label}（円）<input type="number" min="0" step="10000" required value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="helpText">{income.help}</span></label>
+        <label>配偶者の有無<select value={input.hasSpouse ? "yes" : "no"} onChange={(e) => setInput({ ...input, hasSpouse: e.target.value === "yes" })}><option value="yes">あり</option><option value="no">なし</option></select></label>
+        <label>子どもの有無<select value={input.hasChildren ? "yes" : "no"} onChange={(e) => updateHasChildren(e.target.value === "yes")}><option value="yes">あり</option><option value="no">なし</option></select><span className="helpText">子ども関連の公的保障を確認するために使います。</span></label>
+        {input.hasChildren && <label>子どもの人数<input type="number" min="1" max="10" value={input.childrenCount} onChange={(e) => updateNumber("childrenCount")(e.target.value)} /></label>}
+        {input.hasChildren && input.childAges.map((age, index) => <label key={index}>子ども{index + 1}人目の年齢<input type="number" min="0" max="30" value={age} onChange={(e) => updateChildAge(index, e.target.value)} /></label>)}
         <button type="submit">結果を見る</button>
       </form>
       {submitted && (
         <section>
           <h2>診断結果カード一覧</h2>
-          <p className="notice">
-            表示される制度金額・計算ロジックはMVP検証用の仮データです。正式な制度計算ではありません。
-          </p>
+          <p className="notice">この結果は、入力内容から公的保障の全体像を把握するための概算です。実際の金額は、加入している健康保険、標準報酬月額、勤務先の扱い、制度改正などにより異なる場合があります。</p>
           <div className="results">{results.map((benefit) => <BenefitCard key={benefit.id} benefit={benefit} />)}</div>
         </section>
       )}

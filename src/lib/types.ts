@@ -1,14 +1,13 @@
-export type Household = "single" | "couple" | "withChildren" | "caregiving";
+export type InsuranceStatus = "employee" | "dependent" | "national" | "unknown";
 
 export type UserInput = {
   age: number;
-  prefecture: string;
+  insuranceStatus: InsuranceStatus;
   annualIncome: number;
-  monthlySalary: number;
-  healthInsurancePremium: number;
-  pensionPremium: number;
-  household: Household;
-  children: number;
+  hasSpouse: boolean;
+  hasChildren: boolean;
+  childrenCount: number;
+  childAges: number[];
 };
 
 export type BenefitCardData = {
@@ -30,7 +29,14 @@ export type BenefitSource = {
 
 export type Benefit = BenefitCardData & BenefitSource;
 
+export type AccuracyLabel = "高精度" | "中精度" | "要確認";
+
 export type BenefitResult = Benefit & {
   estimatedAmount: string;
+  accuracy: AccuracyLabel;
+  eligibilityPossibility: string;
+  reason: string;
+  variables: string[];
+  nextChecks: string[];
   note: string;
 };
