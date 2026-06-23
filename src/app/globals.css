@@ -8,25 +8,33 @@ main { width: min(100%, 960px); margin: 0 auto; padding: 24px 16px 56px; }
 .hero { padding: 28px 0; }
 h1 { font-size: clamp(2rem, 9vw, 4rem); line-height: 1.15; margin: 0 0 16px; }
 h2 { font-size: 1.8rem; line-height: 1.3; margin-top: 32px; }
-h3 { font-size: 1.35rem; margin: 4px 0 8px; }
+h3 { font-size: 1.1rem; margin: 0 0 6px; }
 .lead { font-size: 1.2rem; }
 .notice { background: #f4f7fb; border-left: 6px solid #2b6cb0; padding: 16px; border-radius: 10px; }
 .formGrid { display: grid; gap: 16px; margin: 24px 0; }
 label { display: grid; gap: 6px; font-weight: 700; }
 input, select { width: 100%; font: inherit; padding: 14px; border: 1px solid #b9c0ca; border-radius: 10px; background: #fff; }
 button, .button { display: inline-block; width: 100%; border: 0; border-radius: 999px; background: #1f5fbf; color: #fff; padding: 16px 22px; font: inherit; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
-.results { display: grid; gap: 18px; }
-.card { border: 1px solid #d8dde6; border-radius: 16px; padding: 18px; background: #fff; box-shadow: 0 8px 24px rgba(23,32,42,.06); }
-.scene { display: inline-block; margin: 0 0 6px; padding: 4px 10px; border-radius: 999px; background: #eef4ff; color: #174a92; font-weight: 800; }
-.amountBox { margin: 16px 0; padding: 14px; border-radius: 12px; background: #fff8e8; display: grid; gap: 4px; }
-.amountBox strong { font-size: 1.5rem; }
-.small, .sourceBox { font-size: .95rem; }
-.sourceBox { border-top: 1px solid #edf0f4; margin-top: 14px; padding-top: 12px; }
-.sourceList { padding-left: 20px; }
-@media (min-width: 720px) { .formGrid { grid-template-columns: repeat(2, 1fr); } button, .button { width: auto; } .results { grid-template-columns: repeat(2, 1fr); } }
-
 .helpText { font-size: .9rem; font-weight: 500; color: #516070; }
-.accuracy { display: inline-block; width: fit-content; padding: 2px 8px; border-radius: 999px; background: #fff; color: #8a4b00; font-weight: 800; }
-.detailBox { margin: 12px 0; padding: 12px; border-radius: 12px; background: #f8fafc; font-size: .95rem; }
-.detailBox p { margin: 6px 0; }
-.detailBox ul { margin: 4px 0 10px; padding-left: 20px; }
+.resultSection { margin-top: 40px; }
+.resultTitle { font-size: clamp(2rem, 7vw, 3.5rem); letter-spacing: -.04em; line-height: 1.18; margin-bottom: 12px; }
+.resultLead { font-size: 1.15rem; font-weight: 700; margin-bottom: 18px; }
+.results { display: grid; gap: 10px; margin-top: 18px; }
+.benefitRow { border: 1px solid #d8dde6; border-radius: 14px; background: #fff; box-shadow: 0 8px 20px rgba(23,32,42,.05); overflow: hidden; }
+.benefitSummary { display: grid; grid-template-columns: minmax(8em, 1.2fr) minmax(8em, 1fr) minmax(7em, 1fr) auto; gap: 12px; align-items: center; padding: 14px 16px; cursor: pointer; list-style: none; }
+.benefitSummary::-webkit-details-marker { display: none; }
+.benefitScene { font-weight: 900; color: #174a92; }
+.benefitName { color: #516070; font-weight: 700; }
+.benefitAmount { justify-self: end; font-size: 1rem; color: #17202a; }
+.benefitIcon { transition: transform .2s ease; color: #174a92; font-weight: 900; }
+.benefitRow[open] .benefitIcon { transform: rotate(180deg); }
+.benefitDetail { display: grid; gap: 16px; padding: 4px 16px 18px; border-top: 1px solid #edf0f4; background: #fbfcfe; }
+.benefitDetail section { padding-top: 12px; }
+.benefitDetail p { margin: 0; }
+.amountLine { font-size: 1.2rem; font-weight: 900; }
+.small, .sourceBox { font-size: .95rem; }
+.sourceBox { border-top: 1px solid #edf0f4; margin-top: 4px; padding-top: 12px; }
+.sourceBox p { margin: 4px 0; }
+.sourceList { padding-left: 20px; }
+@media (min-width: 720px) { .formGrid { grid-template-columns: repeat(2, 1fr); } button, .button { width: auto; } }
+@media (max-width: 719px) { .benefitSummary { grid-template-columns: 1fr auto; } .benefitName, .benefitAmount { grid-column: 1; } .benefitAmount { justify-self: start; } .benefitIcon { grid-column: 2; grid-row: 1 / span 3; } }

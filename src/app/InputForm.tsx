@@ -67,10 +67,11 @@ export function InputForm() {
         <button type="submit">結果を見る</button>
       </form>
       {submitted && (
-        <section>
-          <h2>診断結果カード一覧</h2>
-          <p className="notice">この結果は、入力内容から公的保障の全体像を把握するための概算です。実際の金額は、加入している健康保険、標準報酬月額、勤務先の扱い、制度改正などにより異なる場合があります。</p>
-          <div className="results">{results.map((benefit) => <BenefitCard key={benefit.id} benefit={benefit} />)}</div>
+        <section className="resultSection">
+          <h2 className="resultTitle">あれ、自分って<br />最初からこんな保障持ってたんだ。</h2>
+          <p className="resultLead">入力内容から、あなたが使える可能性のある公的保障をまとめました。</p>
+          <p className="notice">金額は入力内容からの概算です。まずは「どんな場面で使えるか」を一覧で見て、気になる行を開いて確認してください。</p>
+          <div className="results" aria-label="使える可能性がある公的保障の一覧">{results.map((benefit) => <BenefitCard key={benefit.id} benefit={benefit} />)}</div>
         </section>
       )}
     </>

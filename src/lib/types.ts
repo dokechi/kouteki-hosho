@@ -33,6 +33,7 @@ export type AccuracyLabel = "高精度" | "中精度" | "要確認";
 
 export type BenefitResult = Benefit & {
   estimatedAmount: string;
+  listAmount: string;
   accuracy: AccuracyLabel;
   eligibilityPossibility: string;
   reason: string;
