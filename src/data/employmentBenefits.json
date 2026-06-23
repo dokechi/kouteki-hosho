@@ -1,4 +1,18 @@
 {
-  "childcareLeaveBenefit": { "monthlySalaryRate": 0.67 },
-  "familyCareLeaveBenefit": { "monthlySalaryRate": 0.67 }
+  "childcareLeaveBenefit": {
+    "first180Days": {
+      "monthlySalaryRate": 0.67,
+      "monthlyPaymentCap": 323811,
+      "label": "開始から180日目まで"
+    },
+    "after181Days": {
+      "monthlySalaryRate": 0.5,
+      "monthlyPaymentCap": 241650,
+      "label": "181日目以降"
+    }
+  },
+  "familyCareLeaveBenefit": {
+    "monthlySalaryRate": 0.67,
+    "monthlyPaymentCap": 356574
+  }
 }
