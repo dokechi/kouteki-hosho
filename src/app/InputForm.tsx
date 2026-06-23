@@ -17,7 +17,7 @@ export function InputForm() {
     household: "withChildren",
     children: 1,
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(true);
   const results = useMemo(() => calculateBenefits(input), [input]);
 
   const updateNumber = (key: keyof UserInput) => (value: string) =>
