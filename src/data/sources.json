@@ -1,72 +1,72 @@
 [
   {
     "id": "standard-monthly-remuneration",
-    "sourceName": "全国健康保険協会 標準報酬月額・標準賞与額とは？",
-    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/cat330/sb3150/r138/",
+    "sourceName": "全国健康保険協会 令和8年度保険料額表",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/premium_prefectures/r08/index.html",
     "checkedAt": "2026-06-22",
-    "caution": "ダミー等級表によるMVP用の目安です。正確な等級は勤務先または年金事務所へ確認してください。"
+    "caution": "標準報酬月額は勤務先の届出、定時決定、随時改定、賞与の有無などで変わります。本アプリでは入力月給から等級を推定します。"
   },
   {
     "id": "high-cost-medical-expense",
-    "sourceName": "厚生労働省 高額療養費制度を利用される皆さまへ",
-    "sourceUrl": "https://www.mhlw.go.jp/content/000333279.pdf",
+    "sourceName": "全国健康保険協会 高額な医療費を支払ったとき（高額療養費）",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/002/index.html",
     "checkedAt": "2026-06-22",
-    "caution": "所得区分・世帯合算・多数回該当などで変わります。MVPでは概算表示です。"
+    "caution": "自己負担限度額は年齢、所得区分、世帯合算、多数回該当などで変わります。保険外診療、食事代、差額ベッド代などは対象外です。"
   },
   {
     "id": "sickness-allowance",
     "sourceName": "全国健康保険協会 傷病手当金",
     "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3040/r139/",
     "checkedAt": "2026-06-22",
-    "caution": "支給開始日以前12か月の標準報酬月額平均などで計算します。MVPでは入力月給ベースの概算です。"
+    "caution": "支給開始日以前12か月の標準報酬月額平均、待期期間、給与支払い状況などで変わります。本アプリでは標準報酬月額ベースの概算です。"
   },
   {
     "id": "child-allowance",
     "sourceName": "こども家庭庁 児童手当制度",
     "sourceUrl": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/",
     "checkedAt": "2026-06-22",
-    "caution": "MVPでは子どもの人数から一律の仮計算をします。実際の金額は自治体へ確認してください。"
+    "caution": "児童手当は子どもの年齢、第何子か、養育状況、自治体手続きなどで扱いが変わります。本アプリでは簡易表示です。"
   },
   {
     "id": "childbirth-lump-sum",
     "sourceName": "全国健康保険協会 出産育児一時金",
     "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3080/r145/",
     "checkedAt": "2026-06-22",
-    "caution": "産科医療補償制度の対象可否などで金額が変わる場合があります。"
+    "caution": "産科医療補償制度の対象可否、直接支払制度、受取代理制度などで実際の手続きが変わります。"
   },
   {
     "id": "maternity-allowance",
     "sourceName": "全国健康保険協会 出産手当金",
     "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3090/r148/",
     "checkedAt": "2026-06-22",
-    "caution": "標準報酬月額平均に基づくため、MVPでは概算です。"
+    "caution": "出産手当金は被保険者本人が出産のため休業し、給与が支払われない場合などに対象となります。本アプリでは標準報酬月額ベースの概算です。"
   },
   {
     "id": "childcare-leave-benefit",
-    "sourceName": "厚生労働省 育児休業給付について",
+    "sourceName": "厚生労働省 育児休業等給付について",
     "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00001.html",
     "checkedAt": "2026-06-22",
-    "caution": "休業開始からの期間で給付率が変わります。MVPでは休業開始当初の概算です。"
+    "caution": "育児休業給付は雇用保険の加入期間、休業開始時賃金、休業期間、賃金支払い状況などで変わります。"
   },
   {
     "id": "family-care-leave-benefit",
     "sourceName": "厚生労働省 介護休業給付について",
     "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00002.html",
     "checkedAt": "2026-06-22",
-    "caution": "賃金支払い状況等で変わります。MVPでは休業前月給ベースの概算です。"
+    "caution": "介護休業給付は対象家族、雇用保険の加入期間、休業取得、賃金支払い状況などで変わります。"
   },
   {
     "id": "burial-fee",
     "sourceName": "全国健康保険協会 埋葬料（費）",
     "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3050/r143/",
     "checkedAt": "2026-06-22",
-    "caution": "家族がいない場合などは埋葬費として実費範囲になる場合があります。"
+    "caution": "埋葬料、埋葬費、家族埋葬料は亡くなった人との関係、生計維持、実際に埋葬を行ったかなどで扱いが変わります。"
   },
   {
     "id": "survivor-disability-pension",
     "sourceName": "日本年金機構 年金の給付に関する情報",
     "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/index.html",
     "checkedAt": "2026-06-22",
-    "caution": "MVPでは金額計算をせず、概算・要確認カードとして表示します。年金事務所等へ確認してください。"
+    "caution": "遺族年金・障害年金は加入歴、保険料納付要件、初診日、障害等級、配偶者・子の有無などで大きく変わります。MVPでは要確認カードとして表示します。"
   }
 ]
