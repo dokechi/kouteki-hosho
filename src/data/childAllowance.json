@@ -1,5 +1,11 @@
 {
-  "monthlyAmountPerChild": 10000,
+  "amounts": {
+    "under3": 15000,
+    "age3ToHighSchool": 10000,
+    "thirdChildOrLater": 30000
+  },
+  "eligibleAgeMax": 18,
   "noChildrenLabel": "子ども情報なし",
-  "suffix": "/月〜"
+  "suffix": "/月〜",
+  "thirdChildNote": "第3子以降は月30,000円になる場合あり"
 }
