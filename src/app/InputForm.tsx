@@ -129,7 +129,7 @@ export function InputForm() {
     <>
       <form className="formGrid" onSubmit={submitForm} noValidate>
         <label>年齢<input type="number" min="0" placeholder="例：31" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
-        <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="400" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
+        <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="384" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
         <label>加入状況<select value={input.insuranceStatus} onChange={(e) => setInput({ ...input, insuranceStatus: e.target.value as FormInput["insuranceStatus"] })}>
           <option value="">選択してください</option>
           <option value="employee">会社の社会保険に入っている</option>
