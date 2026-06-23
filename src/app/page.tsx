@@ -6,8 +6,6 @@ export default function Home() {
     <>
       <section className="hero">
         <h1>病気・ケガ・失業・出産・介護。使える国の制度を一発確認</h1>
-        <p className="lead"></p>
-        <p className="notice"></p>
         <Link className="button" href="#diagnosis">診断をはじめる</Link>
       </section>
       <section id="diagnosis">
