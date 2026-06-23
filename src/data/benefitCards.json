@@ -1,7 +1,7 @@
 [
   {
     "id": "standard-monthly-remuneration",
-    "scene": "毎月の保険料を確認したい",
+    "scene": "保障額の土台を知るとき",
     "name": "推定標準報酬月額",
     "summary": "入力した月給から標準報酬月額の目安を表示します。実際の等級は勤務先の届出・賞与・改定時期などで変わります。",
     "baseAmountLabel": "入力月給に近い等級の目安",
@@ -9,7 +9,7 @@
   },
   {
     "id": "high-cost-medical-expense",
-    "scene": "病気になったら",
+    "scene": "医療費が高いとき",
     "name": "高額療養費",
     "summary": "医療費の自己負担が高額になった場合、年齢や所得区分に応じた自己負担限度額を超えた分が払い戻される可能性があります。",
     "baseAmountLabel": "自己負担限度額の目安",
@@ -17,7 +17,7 @@
   },
   {
     "id": "sickness-allowance",
-    "scene": "会社を休んだら",
+    "scene": "働けないとき",
     "name": "傷病手当金",
     "summary": "業務外の病気やけがで働けず給与が十分に支払われない場合、一定条件で支給される可能性があります。",
     "baseAmountLabel": "日額の目安",
@@ -25,7 +25,7 @@
   },
   {
     "id": "child-allowance",
-    "scene": "子どもがいる・生まれたら",
+    "scene": "子どもがいるとき",
     "name": "児童手当",
     "summary": "高校生年代までの子どもを養育している場合、年齢や第何子かに応じて手当を受け取れる可能性があります。",
     "baseAmountLabel": "月額の目安",
@@ -33,7 +33,7 @@
   },
   {
     "id": "childbirth-lump-sum",
-    "scene": "子どもが生まれたら",
+    "scene": "出産するとき",
     "name": "出産育児一時金",
     "summary": "健康保険の加入者または被扶養者が出産したとき、出産費用の負担軽減のため支給される可能性があります。",
     "baseAmountLabel": "支給額の目安",
@@ -41,7 +41,7 @@
   },
   {
     "id": "maternity-allowance",
-    "scene": "出産で会社を休んだら",
+    "scene": "出産で休むとき",
     "name": "出産手当金",
     "summary": "出産のため会社を休み給与が支払われない場合、産前産後期間について支給される可能性があります。",
     "baseAmountLabel": "日額の目安",
@@ -49,7 +49,7 @@
   },
   {
     "id": "childcare-leave-benefit",
-    "scene": "育児で会社を休んだら",
+    "scene": "育児で休むとき",
     "name": "育児休業給付",
     "summary": "雇用保険の被保険者が育児休業を取得する場合、休業前賃金に応じた給付を受けられる可能性があります。",
     "baseAmountLabel": "月額の目安",
@@ -57,7 +57,7 @@
   },
   {
     "id": "family-care-leave-benefit",
-    "scene": "介護で会社を休んだら",
+    "scene": "介護で休むとき",
     "name": "介護休業給付",
     "summary": "家族の介護のため休業する場合、雇用保険から給付を受けられる可能性があります。",
     "baseAmountLabel": "月額の目安",
@@ -73,7 +73,7 @@
   },
   {
     "id": "survivor-disability-pension",
-    "scene": "障害・万が一のとき",
+    "scene": "障害が残ったとき・万が一のとき",
     "name": "遺族年金・障害年金（概算・要確認）",
     "summary": "死亡や障害状態になった場合、加入状況・家族構成・納付要件などにより年金を受け取れる可能性があります。",
     "baseAmountLabel": "判定",
