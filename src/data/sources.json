@@ -16,8 +16,8 @@
   {
     "id": "sickness-allowance",
     "sourceName": "全国健康保険協会 傷病手当金",
-    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3040/r139/",
-    "checkedAt": "2026-06-22",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/benefit/injury_and_sickness_allowance/index.html",
+    "checkedAt": "2026-06-23",
     "caution": "支給開始日以前12か月の標準報酬月額平均、待期期間、給与支払い状況などで変わります。本アプリでは標準報酬月額ベースの概算です。"
   },
   {
@@ -30,15 +30,15 @@
   {
     "id": "childbirth-lump-sum",
     "sourceName": "全国健康保険協会 出産育児一時金",
-    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3080/r145/",
-    "checkedAt": "2026-06-22",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/002/index.html",
+    "checkedAt": "2026-06-23",
     "caution": "産科医療補償制度の対象可否、直接支払制度、受取代理制度などで実際の手続きが変わります。"
   },
   {
     "id": "maternity-allowance",
     "sourceName": "全国健康保険協会 出産手当金",
-    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3090/r148/",
-    "checkedAt": "2026-06-22",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/index.html",
+    "checkedAt": "2026-06-23",
     "caution": "出産手当金は被保険者本人が出産のため休業し、給与が支払われない場合などに対象となります。本アプリでは標準報酬月額ベースの概算です。"
   },
   {
@@ -51,15 +51,15 @@
   {
     "id": "family-care-leave-benefit",
     "sourceName": "厚生労働省 介護休業給付について",
-    "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000135090_00002.html",
-    "checkedAt": "2026-06-22",
+    "sourceUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000158665.html",
+    "checkedAt": "2026-06-23",
     "caution": "介護休業給付は対象家族、雇用保険の加入期間、休業取得、賃金支払い状況などで変わります。"
   },
   {
     "id": "burial-fee",
     "sourceName": "全国健康保険協会 埋葬料（費）",
-    "sourceUrl": "https://www.kyoukaikenpo.or.jp/g3/sb3050/r143/",
-    "checkedAt": "2026-06-22",
+    "sourceUrl": "https://www.kyoukaikenpo.or.jp/benefit/burial_charges/index.html",
+    "checkedAt": "2026-06-23",
     "caution": "埋葬料、埋葬費、家族埋葬料は亡くなった人との関係、生計維持、実際に埋葬を行ったかなどで扱いが変わります。"
   },
   {
