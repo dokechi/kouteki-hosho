@@ -40,4 +40,5 @@ export type BenefitResult = Benefit & {
   variables: string[];
   nextChecks: string[];
   note: string;
+  supplementalNotice?: string;
 };
