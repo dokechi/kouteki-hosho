@@ -1,60 +1,46 @@
 :root { color: #17202a; background: #fff; }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 18px; line-height: 1.75; background: #fff; }
-a { color: #1756a9; text-underline-offset: .18em; }
-main { width: min(100%, 960px); margin: 0 auto; padding: 28px 18px 64px; }
-.siteHeader { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 16px 18px; border-bottom: 1px solid #e6e8eb; }
+body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 18px; line-height: 1.7; background: #fff; }
+a { color: #1756a9; }
+main { width: min(100%, 960px); margin: 0 auto; padding: 24px 16px 56px; }
+.siteHeader { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 16px; border-bottom: 1px solid #e6e8eb; }
 .logo { font-weight: 800; color: #17202a; text-decoration: none; }
-.hero { padding: 36px 0 30px; border-bottom: 1px solid #edf0f4; }
-.eyebrow, .sectionLabel { margin: 0 0 10px; color: #174a92; font-size: .92rem; font-weight: 800; letter-spacing: .04em; }
-h1 { max-width: 13em; font-size: clamp(2rem, 7vw, 3.6rem); line-height: 1.16; letter-spacing: -.03em; margin: 0 0 18px; }
-h2 { font-size: clamp(1.6rem, 4vw, 2rem); line-height: 1.35; margin: 0 0 8px; }
-h3 { font-size: 1.05rem; margin: 0 0 6px; }
-.lead { max-width: 42em; font-size: clamp(1.08rem, 2.5vw, 1.28rem); font-weight: 650; line-height: 1.75; margin: 0 0 12px; }
-.heroNote, .sectionLead { max-width: 45em; color: #516070; margin: 0; }
-.diagnosisSection { padding-top: 34px; }
-.notice { background: #f7f9fc; border-left: 4px solid #2b6cb0; padding: 14px 16px; border-radius: 8px; color: #2d3b4d; }
-.formGrid { display: grid; gap: 18px 20px; margin: 26px 0; }
-label { display: grid; gap: 7px; font-weight: 750; }
-input, select { width: 100%; font: inherit; padding: 13px 14px; border: 1px solid #b9c0ca; border-radius: 8px; background: #fff; }
-input:focus, select:focus { outline: 3px solid #dbe8f8; border-color: #1756a9; }
-.inputWithUnit { display: grid; grid-template-columns: 1fr auto; align-items: center; border: 1px solid #b9c0ca; border-radius: 8px; background: #fff; overflow: hidden; }
-.inputWithUnit:focus-within { outline: 3px solid #dbe8f8; border-color: #1756a9; }
-.inputWithUnit input { border: 0; border-radius: 0; outline: 0; }
+.hero { padding: 28px 0; }
+h1 { font-size: clamp(2rem, 9vw, 4rem); line-height: 1.15; margin: 0 0 16px; }
+h2 { font-size: 1.8rem; line-height: 1.3; margin-top: 32px; }
+h3 { font-size: 1.1rem; margin: 0 0 6px; }
+.lead { font-size: 1.2rem; }
+.notice { background: #f4f7fb; border-left: 6px solid #2b6cb0; padding: 16px; border-radius: 10px; }
+.formGrid { display: grid; gap: 16px; margin: 24px 0; }
+label { display: grid; gap: 6px; font-weight: 700; }
+input, select { width: 100%; font: inherit; padding: 14px; border: 1px solid #b9c0ca; border-radius: 10px; background: #fff; }
+.inputWithUnit { display: grid; grid-template-columns: 1fr auto; align-items: center; border: 1px solid #b9c0ca; border-radius: 10px; background: #fff; overflow: hidden; }
+.inputWithUnit input { border: 0; border-radius: 0; }
 .unitText { padding: 0 14px 0 6px; font-weight: 700; color: #17202a; white-space: nowrap; }
-button, .button { display: inline-block; width: 100%; border: 0; border-radius: 8px; background: #1f5fbf; color: #fff; padding: 15px 22px; font: inherit; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
-button:focus-visible, .button:focus-visible { outline: 3px solid #dbe8f8; outline-offset: 3px; }
-.helpText { font-size: .92rem; font-weight: 500; color: #516070; }
-.errorBox { grid-column: 1 / -1; border: 1px solid #d93025; background: #fff8f8; color: #8a1f17; border-radius: 8px; padding: 14px 16px; }
+button, .button { display: inline-block; width: 100%; border: 0; border-radius: 999px; background: #1f5fbf; color: #fff; padding: 16px 22px; font: inherit; font-weight: 800; text-align: center; text-decoration: none; cursor: pointer; }
+.helpText { font-size: .9rem; font-weight: 500; color: #516070; }
+.errorBox { grid-column: 1 / -1; border: 1px solid #d93025; background: #fff5f5; color: #8a1f17; border-radius: 10px; padding: 14px 16px; }
 .errorBox p { margin: 0 0 6px; font-weight: 800; }
 .errorBox ul { margin: 0; padding-left: 20px; }
-.resultSection { margin-top: 48px; padding-top: 30px; border-top: 1px solid #edf0f4; }
-.resultTitle { max-width: 18em; font-size: clamp(1.8rem, 5vw, 2.6rem); letter-spacing: -.03em; line-height: 1.25; margin-bottom: 12px; }
-.resultLead { font-size: 1.12rem; font-weight: 700; margin: 0 0 16px; }
-.results { display: grid; gap: 14px; margin-top: 22px; }
-.benefitRow { border: 1px solid #d8dde6; border-radius: 12px; background: #fff; overflow: hidden; }
-.benefitSummary { display: grid; grid-template-columns: minmax(9em, 1.25fr) minmax(9em, 1fr) minmax(8em, auto) auto; gap: 12px 16px; align-items: center; padding: 16px 18px; cursor: pointer; list-style: none; }
+.resultSection { margin-top: 40px; }
+.resultTitle { font-size: clamp(2rem, 7vw, 3.5rem); letter-spacing: -.04em; line-height: 1.18; margin-bottom: 12px; }
+.resultLead { font-size: 1.15rem; font-weight: 700; margin-bottom: 18px; }
+.results { display: grid; gap: 10px; margin-top: 18px; }
+.benefitRow { border: 1px solid #d8dde6; border-radius: 14px; background: #fff; box-shadow: 0 8px 20px rgba(23,32,42,.05); overflow: hidden; }
+.benefitSummary { display: grid; grid-template-columns: minmax(8em, 1.2fr) minmax(8em, 1fr) minmax(7em, 1fr) auto; gap: 12px; align-items: center; padding: 14px 16px; cursor: pointer; list-style: none; }
 .benefitSummary::-webkit-details-marker { display: none; }
-.benefitScene { font-weight: 850; color: #174a92; }
-.benefitName { color: #3f4f60; font-weight: 700; }
-.benefitAmountGroup { display: grid; gap: 1px; justify-items: end; }
-.amountLabel { color: #667789; font-size: .78rem; font-weight: 700; }
-.benefitAmount { font-size: 1.04rem; color: #17202a; line-height: 1.35; }
+.benefitScene { font-weight: 900; color: #174a92; }
+.benefitName { color: #516070; font-weight: 700; }
+.benefitAmount { justify-self: end; font-size: 1rem; color: #17202a; }
 .benefitIcon { transition: transform .2s ease; color: #174a92; font-weight: 900; }
 .benefitRow[open] .benefitIcon { transform: rotate(180deg); }
-.benefitDetail { display: grid; gap: 18px; padding: 18px; border-top: 1px solid #edf0f4; background: #fff; }
-.benefitDetail section + section { padding-top: 4px; }
+.benefitDetail { display: grid; gap: 16px; padding: 4px 16px 18px; border-top: 1px solid #edf0f4; background: #fbfcfe; }
+.benefitDetail section { padding-top: 12px; }
 .benefitDetail p { margin: 0; }
-.benefitDetail ul { margin: 6px 0 0; padding-left: 22px; }
-.amountLine { font-size: 1.18rem; font-weight: 850; }
+.amountLine { font-size: 1.2rem; font-weight: 900; }
 .small, .sourceBox { font-size: .95rem; }
-.small { color: #516070; }
-.sourceBox { border-top: 1px solid #edf0f4; margin-top: 2px; padding-top: 14px; color: #3f4f60; }
-.sourceBox p { margin: 5px 0; }
-.sourceBox ul { margin: 6px 0 8px; padding-left: 20px; }
-.sourceTitle { color: #17202a; }
-.sourceMeta { font-size: .9rem; }
-.sourceCaution { color: #516070; }
+.sourceBox { border-top: 1px solid #edf0f4; margin-top: 4px; padding-top: 12px; }
+.sourceBox p { margin: 4px 0; }
 .sourceList { padding-left: 20px; }
 @media (min-width: 720px) { .formGrid { grid-template-columns: repeat(2, 1fr); } button, .button { width: auto; } }
-@media (max-width: 719px) { main { padding: 22px 16px 52px; } .hero { padding-top: 28px; } .benefitSummary { grid-template-columns: 1fr auto; padding: 15px 16px; } .benefitName, .benefitAmountGroup { grid-column: 1; } .benefitAmountGroup { justify-items: start; } .benefitIcon { grid-column: 2; grid-row: 1 / span 3; } .benefitDetail { padding: 16px; } }
+@media (max-width: 719px) { .benefitSummary { grid-template-columns: 1fr auto; } .benefitName, .benefitAmount { grid-column: 1; } .benefitAmount { justify-self: start; } .benefitIcon { grid-column: 2; grid-row: 1 / span 3; } }

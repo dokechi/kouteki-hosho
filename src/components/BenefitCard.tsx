@@ -8,7 +8,7 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
       <summary className="benefitSummary">
         <span className="benefitScene">{benefit.scene}</span>
         <span className="benefitName">{benefit.name}</span>
-        <span className="benefitAmountGroup"><span className="amountLabel">目安</span><strong className="benefitAmount">{benefit.listAmount}</strong></span>
+        <strong className="benefitAmount">{benefit.listAmount}</strong>
         <span className="benefitIcon" aria-hidden="true">▼</span>
       </summary>
       <div className="benefitDetail">
@@ -42,7 +42,7 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
         </section>
         <p className="small"><b>計算メモ：</b>{benefit.note}</p>
         <div className="sourceBox">
-          <p className="sourceTitle"><b>公式情報・確認先</b></p>
+          <p><b>出典：</b></p>
           {hasSourceLinks ? (
             <ul>
               {benefit.sourceLinks?.map((source) => (
@@ -54,8 +54,8 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
           ) : (
             <p><a href={benefit.sourceUrl} target="_blank" rel="noreferrer">{benefit.sourceName}</a></p>
           )}
-          <p className="sourceMeta"><b>確認日：</b>{benefit.checkedAt}</p>
-          <p className="sourceCaution"><b>注意：</b>{benefit.caution}</p>
+          <p><b>確認日：</b>{benefit.checkedAt}</p>
+          <p><b>注意：</b>{benefit.caution}</p>
         </div>
       </div>
     </details>
