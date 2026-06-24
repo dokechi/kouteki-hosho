@@ -8,6 +8,14 @@
     "eligibilityHint": "協会けんぽ・厚生年金に加入している会社員向けの簡易推定です。"
   },
   {
+    "id": "survivor-disability-pension",
+    "scene": "万が一のとき",
+    "name": "遺族年金",
+    "summary": "死亡した場合、子のある配偶者または子には遺族基礎年金、会社の社会保険に加入している場合は遺族厚生年金が上乗せされる可能性があります。",
+    "baseAmountLabel": "遺族年金の合計目安",
+    "eligibilityHint": "子どもの有無・年齢、配偶者の有無、年金加入歴、保険料納付要件により変わります。"
+  },
+  {
     "id": "high-cost-medical-expense",
     "scene": "医療費が高いとき",
     "name": "高額療養費",
@@ -70,13 +78,5 @@
     "summary": "健康保険の被保険者が亡くなった場合、埋葬を行う家族に支給される可能性があります。",
     "baseAmountLabel": "支給額の目安",
     "eligibilityHint": "被保険者により生計を維持されていた方などが対象です。"
-  },
-  {
-    "id": "survivor-disability-pension",
-    "scene": "障害が残ったとき・万が一のとき",
-    "name": "遺族年金・障害年金（概算・要確認）",
-    "summary": "死亡や障害状態になった場合、加入状況・家族構成・納付要件などにより年金を受け取れる可能性があります。",
-    "baseAmountLabel": "判定",
-    "eligibilityHint": "年金加入歴、配偶者・子の有無、障害等級など詳細確認が必要です。"
   }
 ]
