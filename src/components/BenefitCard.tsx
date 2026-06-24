@@ -1,6 +1,8 @@
 import type { BenefitResult } from "@/lib/types";
 
 export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
+  const hasSourceLinks = Boolean(benefit.sourceLinks?.length);
+
   return (
     <details className="benefitRow">
       <summary className="benefitSummary">
@@ -41,9 +43,9 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
         <p className="small"><b>計算メモ：</b>{benefit.note}</p>
         <div className="sourceBox">
           <p><b>出典：</b></p>
-          {benefit.sourceLinks ? (
+          {hasSourceLinks ? (
             <ul>
-              {benefit.sourceLinks.map((source) => (
+              {benefit.sourceLinks?.map((source) => (
                 <li key={source.url}>
                   <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a>
                 </li>
