@@ -71,9 +71,27 @@
   },
   {
     "id": "disability-pension",
-    "sourceName": "日本年金機構 障害基礎年金・障害厚生年金・報酬比例部分・障害等級表",
-    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/shougainenkin/index.html",
+    "sourceName": "日本年金機構 障害年金関連ページ",
+    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/jukyu-yoken/index.html",
     "checkedAt": "2026-06-24",
-    "caution": "障害基礎年金の受給要件・請求時期・年金額、障害厚生年金の受給要件・請求時期・年金額、報酬比例部分、障害等級表を参照しています。実際の対象可否は初診日、障害認定日、保険料納付要件、診断書、障害等級の認定で変わります。"
+    "caution": "障害基礎年金、障害厚生年金、報酬比例部分、障害等級表を参照しています。実際の対象可否は初診日、障害認定日、保険料納付要件、診断書、障害等級の認定で変わります。",
+    "sourceLinks": [
+      {
+        "name": "日本年金機構 障害基礎年金の受給要件・請求時期・年金額",
+        "url": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/jukyu-yoken/20150514.html"
+      },
+      {
+        "name": "日本年金機構 障害厚生年金の受給要件・請求時期・年金額",
+        "url": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/jukyu-yoken/20150401-02.html"
+      },
+      {
+        "name": "日本年金機構 報酬比例部分",
+        "url": "https://www.nenkin.go.jp/service/yougo/hagyo/hoshuhirei.html"
+      },
+      {
+        "name": "日本年金機構 障害等級表",
+        "url": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/ninteikijun/tokyuhyo.html"
+      }
+    ]
   }
 ]
