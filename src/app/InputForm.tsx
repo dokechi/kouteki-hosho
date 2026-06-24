@@ -129,7 +129,7 @@ export function InputForm() {
     <>
       <form className="formGrid" onSubmit={submitForm} noValidate>
         <label>年齢<input type="number" min="0" placeholder="例：31" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
-        <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="例：384" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
+        <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="384" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
         <label>加入状況<select value={input.insuranceStatus} onChange={(e) => setInput({ ...input, insuranceStatus: e.target.value as FormInput["insuranceStatus"] })}>
           <option value="">選択してください</option>
           <option value="employee">会社の社会保険に入っている</option>
@@ -142,13 +142,12 @@ export function InputForm() {
         {input.hasChildren === "yes" && <label>子どもの人数<input type="number" min="1" max="10" placeholder="例：1" value={input.childrenCount} onChange={(e) => updateNumber("childrenCount")(e.target.value)} /></label>}
         {input.hasChildren === "yes" && input.childAges.map((age, index) => <label key={index}>子ども{index + 1}人目の年齢<input type="number" min="0" max="30" placeholder="例：3" value={age} onChange={(e) => updateChildAge(index, e.target.value)} /></label>)}
         {errors.length > 0 && <div className="errorBox" role="alert"><p>入力内容を確認してください。</p><ul>{errors.map((error) => <li key={error}>{error}</li>)}</ul></div>}
-        <button type="submit">入力内容で確認する</button>
+        <button type="submit">結果を見る</button>
       </form>
       {validatedInput && (
         <section className="resultSection">
-          <p className="sectionLabel">確認結果</p>
-          <h2 className="resultTitle">使える可能性のある公的保障</h2>
-          <p className="resultLead">入力内容から、確認したい公的保障をまとめました。</p>
+          <h2 className="resultTitle">あれ、自分って<br />最初からこんな保障持ってたんだ。</h2>
+          <p className="resultLead">入力内容から、あなたが使える可能性のある公的保障をまとめました。</p>
           <p className="notice">金額は概算です。まずは「どんな場面で使えるか」を一覧で見て、気になる行を開いて確認してください。</p>
           <div className="results" aria-label="使える可能性がある公的保障の一覧">{results.map((benefit) => <BenefitCard key={benefit.id} benefit={benefit} />)}</div>
         </section>
