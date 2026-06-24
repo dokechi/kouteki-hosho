@@ -197,6 +197,85 @@ function survivorPensionEstimate(input: UserInput, standard: number) {
     supplementalNotice,
   };
 }
+function disabilityChildAddition(eligibleChildren: number) {
+  const config = pensionBenefits.disabilityPension;
+  return Array.from({ length: eligibleChildren }, (_, index) =>
+    index < 2
+      ? config.disabilityBasicPensionFirstSecondChildAddition
+      : config.disabilityBasicPensionThirdAndLaterChildAddition,
+  ).reduce((total, amount) => total + amount, 0);
+}
+function disabilityEmployeesPensionAmounts(standard: number, hasSpouse: boolean) {
+  const config = pensionBenefits.disabilityPension;
+  const proportional = Math.round(
+    standard *
+      config.disabilityEmployeesPensionRemunerationCoefficient *
+      config.deemedEnrollmentMonths,
+  );
+  const spouseAddition = hasSpouse ? config.spouseAdditionalPensionAmount : 0;
+  return {
+    grade1: Math.round(
+      proportional * config.disabilityEmployeesPensionGrade1Rate +
+        spouseAddition,
+    ),
+    grade2: Math.round(
+      proportional * config.disabilityEmployeesPensionGrade2Rate +
+        spouseAddition,
+    ),
+    grade3: Math.max(
+      Math.round(proportional * config.disabilityEmployeesPensionGrade3Rate),
+      config.disabilityEmployeesPensionGrade3MinimumAmount,
+    ),
+  };
+}
+function disabilityPensionEstimate(input: UserInput, standard: number) {
+  const config = pensionBenefits.disabilityPension;
+  const eligibleChildren = input.childAges.filter((age) => age <= 18).length;
+  const childAddition = disabilityChildAddition(eligibleChildren);
+  const basicGrade1 =
+    config.disabilityBasicPensionGrade1Amount + childAddition;
+  const basicGrade2 =
+    config.disabilityBasicPensionGrade2Amount + childAddition;
+  const employees =
+    input.insuranceStatus === "employee"
+      ? disabilityEmployeesPensionAmounts(standard, input.hasSpouse)
+      : null;
+  const grade1Total = basicGrade1 + (employees?.grade1 ?? 0);
+  const grade2Total = basicGrade2 + (employees?.grade2 ?? 0);
+  const grade3Total = employees?.grade3 ?? null;
+  const amountBreakdown = [
+    `障害基礎年金：${shortAnnualAmount(basicGrade2)}`,
+    employees
+      ? `障害厚生年金：${shortAnnualAmount(employees.grade2)}`
+      : "障害厚生年金：会社の社会保険加入ではないため、3級を含む厚生年金部分の金額は断定しません",
+  ];
+  const grade3Notice =
+    grade3Total === null
+      ? "3級は障害厚生年金の制度のため、国民年金のみの場合は金額を断定しません。"
+      : `3級の場合：${shortAnnualAmount(grade3Total)}（月 約${(grade3Total / 12 / 10000).toFixed(1)}万円）`;
+  const supplementalNotice = [
+    `1級の場合：${shortAnnualAmount(grade1Total)}（月 約${(grade1Total / 12 / 10000).toFixed(1)}万円）`,
+    grade3Notice,
+    "これは請求額の確定計算ではなく、障害等級に該当した場合の金額目安です。",
+    "実際の対象可否は、初診日、障害認定日、保険料納付要件、診断書、障害等級の認定で変わります。",
+    "障害等級は病名ではなく状態で見ます。",
+    "1級：日常生活の多くに介助が必要な状態",
+    "2級：日常生活が極めて困難で、働いて収入を得ることが難しい状態",
+    "3級：厚生年金加入者が対象。労働に大きな制限が残る状態",
+    "身体障害者手帳の等級とは別です。",
+    "例：重い視覚・聴覚障害、手足の著しい障害、長期安静が必要な病状、精神の障害などで対象になる場合があります。",
+    "配偶者加給年金額は、生計維持関係、配偶者年齢、配偶者自身の年金受給状況などで停止される場合があります。",
+    "厚生年金部分は、実際には過去の標準報酬月額、賞与、加入月数で変わります。",
+    "子の判定は、生年月日入力がないため18歳以下で簡易判定しています（厳密には18歳到達年度の3月31日まで）。",
+  ].join(" ");
+
+  return {
+    estimatedAmount: `2級の場合：${shortAnnualAmount(grade2Total)}（月 約${(grade2Total / 12 / 10000).toFixed(1)}万円）`,
+    listAmount: shortAnnualAmount(grade2Total),
+    amountBreakdown,
+    supplementalNotice,
+  };
+}
 function monthlyEmploymentBenefit(
   monthlyIncome: number,
   config: EmploymentBenefitRate,
@@ -263,6 +342,7 @@ function amountAndAccuracy(
   estimatedAmount: string;
   listAmount: string;
   accuracy: AccuracyLabel;
+  amountBreakdown?: string[];
   supplementalNotice?: string;
 } {
   const monthly = estimatedMonthlyIncome(input);
@@ -363,6 +443,8 @@ function amountAndAccuracy(
       };
     case "survivor-disability-pension":
       return { ...survivorPensionEstimate(input, standard), accuracy: "要確認" };
+    case "disability-pension":
+      return { ...disabilityPensionEstimate(input, standard), accuracy: "要確認" };
     default:
       return {
         estimatedAmount: "要確認",
@@ -540,6 +622,29 @@ function detailFor(id: string, input: UserInput) {
         "配偶者・子どもの情報",
         "子どもの生年月日",
         "障害等級に該当する子の有無",
+        "年金事務所",
+      ],
+    },
+    "disability-pension": {
+      eligibilityPossibility: employee
+        ? "障害等級に該当した場合、障害基礎年金または障害厚生年金の対象になる可能性"
+        : "障害等級1級・2級に該当した場合、障害基礎年金の対象になる可能性",
+      reason:
+        "病気やけがで生活や仕事に大きな制限が残った場合に生活を支える年金制度です。",
+      variables: [
+        "初診日",
+        "障害認定日",
+        "保険料納付要件",
+        "診断書",
+        "障害等級の認定",
+        "過去の標準報酬月額・賞与・加入月数",
+        "配偶者加給年金額の停止要件",
+      ],
+      nextChecks: [
+        "初診日が分かる資料",
+        "診断書",
+        "ねんきん定期便",
+        "保険料納付状況",
         "年金事務所",
       ],
     },

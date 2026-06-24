@@ -68,5 +68,12 @@
     "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/izokunenkin/index.html",
     "checkedAt": "2026-06-24",
     "caution": "遺族基礎年金、遺族厚生年金、報酬比例部分、障害等級表を参照しています。実際の支給可否・金額は年金加入歴、保険料納付要件、標準報酬月額・賞与、加入月数、短期/長期要件、配偶者・子の状況、障害等級などで変わります。"
+  },
+  {
+    "id": "disability-pension",
+    "sourceName": "日本年金機構 障害基礎年金・障害厚生年金・報酬比例部分・障害等級表",
+    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/shougainenkin/index.html",
+    "checkedAt": "2026-06-24",
+    "caution": "障害基礎年金の受給要件・請求時期・年金額、障害厚生年金の受給要件・請求時期・年金額、報酬比例部分、障害等級表を参照しています。実際の対象可否は初診日、障害認定日、保険料納付要件、診断書、障害等級の認定で変わります。"
   }
 ]

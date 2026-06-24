@@ -7,5 +7,18 @@
     "survivorEmployeesPensionRemunerationCoefficient": 0.005481,
     "deemedEnrollmentMonths": 300,
     "survivorEmployeesPensionRate": 0.75
+  },
+  "disabilityPension": {
+    "disabilityBasicPensionGrade1Amount": 1059125,
+    "disabilityBasicPensionGrade2Amount": 847300,
+    "disabilityBasicPensionFirstSecondChildAddition": 243800,
+    "disabilityBasicPensionThirdAndLaterChildAddition": 81300,
+    "disabilityEmployeesPensionRemunerationCoefficient": 0.005481,
+    "deemedEnrollmentMonths": 300,
+    "disabilityEmployeesPensionGrade1Rate": 1.25,
+    "disabilityEmployeesPensionGrade2Rate": 1,
+    "disabilityEmployeesPensionGrade3Rate": 1,
+    "disabilityEmployeesPensionGrade3MinimumAmount": 635500,
+    "spouseAdditionalPensionAmount": 243800
   }
 }
