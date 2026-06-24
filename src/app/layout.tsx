@@ -3,8 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "公的保障見える化 MVP",
-  description: "協会けんぽ加入の会社員向け公的保障チェックアプリ",
+  title: "公的保障見える化",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
