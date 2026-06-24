@@ -133,13 +133,16 @@ function survivorBasicPensionAmount(input: UserInput) {
   const eligibleChildren = input.childAges.filter((age) => age <= 18).length;
   if (eligibleChildren === 0) return { amount: 0, eligibleChildren };
 
-  const childAddition = Array.from(
-    { length: input.hasSpouse ? eligibleChildren : eligibleChildren - 1 },
-    (_, index) =>
-      index < 2
-        ? config.survivorBasicPensionFirstSecondChildAddition
-        : config.survivorBasicPensionThirdAndLaterChildAddition,
-  ).reduce((total, amount) => total + amount, 0);
+  const additionCount = input.hasSpouse
+    ? eligibleChildren
+    : Math.max(eligibleChildren - 1, 0);
+  const childOrderOffset = input.hasSpouse ? 0 : 1;
+  const childAddition = Array.from({ length: additionCount }, (_, index) => {
+    const childOrder = index + childOrderOffset + 1;
+    return childOrder <= 2
+      ? config.survivorBasicPensionFirstSecondChildAddition
+      : config.survivorBasicPensionThirdAndLaterChildAddition;
+  }).reduce((total, amount) => total + amount, 0);
 
   return {
     amount: config.survivorBasicPensionBaseAmount + childAddition,
