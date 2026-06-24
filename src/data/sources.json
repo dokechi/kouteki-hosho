@@ -64,10 +64,28 @@
   },
   {
     "id": "survivor-disability-pension",
-    "sourceName": "日本年金機構 遺族基礎年金・遺族厚生年金・報酬比例部分・障害等級表",
+    "sourceName": "日本年金機構 遺族年金関連ページ",
     "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/izokunenkin/index.html",
     "checkedAt": "2026-06-24",
-    "caution": "遺族基礎年金、遺族厚生年金、報酬比例部分、障害等級表を参照しています。実際の支給可否・金額は年金加入歴、保険料納付要件、標準報酬月額・賞与、加入月数、短期/長期要件、配偶者・子の状況、障害等級などで変わります。"
+    "caution": "遺族基礎年金、遺族厚生年金、報酬比例部分、障害等級表を参照しています。実際の支給可否・金額は、年金加入歴、保険料納付要件、標準報酬月額・賞与、加入月数、短期/長期要件、配偶者・子の状況、障害等級などで変わります。",
+    "sourceLinks": [
+      {
+        "name": "日本年金機構 遺族基礎年金（受給要件・対象者・年金額）",
+        "url": "https://www.nenkin.go.jp/service/jukyu/seido/izokunenkin/jukyu-yoken/20150401-04.html"
+      },
+      {
+        "name": "日本年金機構 遺族厚生年金（受給要件・対象者・年金額）",
+        "url": "https://www.nenkin.go.jp/service/jukyu/seido/izokunenkin/jukyu-yoken/20150424.html"
+      },
+      {
+        "name": "日本年金機構 報酬比例部分",
+        "url": "https://www.nenkin.go.jp/service/yougo/hagyo/hoshuhirei.html"
+      },
+      {
+        "name": "日本年金機構 障害等級表",
+        "url": "https://www.nenkin.go.jp/service/jukyu/seido/shougainenkin/ninteikijun/tokyuhyo.html"
+      }
+    ]
   },
   {
     "id": "disability-pension",
