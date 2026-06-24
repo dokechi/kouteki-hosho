@@ -19,10 +19,16 @@ export type BenefitCardData = {
   eligibilityHint: string;
 };
 
+export type SourceLink = {
+  name: string;
+  url: string;
+};
+
 export type BenefitSource = {
   id: string;
   sourceName: string;
   sourceUrl: string;
+  sourceLinks?: SourceLink[];
   checkedAt: string;
   caution: string;
 };

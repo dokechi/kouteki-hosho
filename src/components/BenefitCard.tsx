@@ -40,7 +40,18 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
         </section>
         <p className="small"><b>計算メモ：</b>{benefit.note}</p>
         <div className="sourceBox">
-          <p><b>出典：</b><a href={benefit.sourceUrl} target="_blank" rel="noreferrer">{benefit.sourceName}</a></p>
+          <p><b>出典：</b></p>
+          {benefit.sourceLinks ? (
+            <ul>
+              {benefit.sourceLinks.map((source) => (
+                <li key={source.url}>
+                  <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p><a href={benefit.sourceUrl} target="_blank" rel="noreferrer">{benefit.sourceName}</a></p>
+          )}
           <p><b>確認日：</b>{benefit.checkedAt}</p>
           <p><b>注意：</b>{benefit.caution}</p>
         </div>
