@@ -125,6 +125,75 @@ function monthlyTwoThirdsBenefitAmount(
 function shortMonthlyAmount(amount: number) {
   return `月 約${Math.round(amount / 10000)}万円`;
 }
+function shortAnnualAmount(amount: number) {
+  return `年 約${Math.round(amount / 10000)}万円`;
+}
+function survivorBasicPensionAmount(input: UserInput) {
+  const config = pensionBenefits.survivorDisabilityPension;
+  const eligibleChildren = input.childAges.filter((age) => age <= 18).length;
+  if (eligibleChildren === 0) return { amount: 0, eligibleChildren };
+
+  const childAddition = Array.from(
+    { length: input.hasSpouse ? eligibleChildren : eligibleChildren - 1 },
+    (_, index) =>
+      index < 2
+        ? config.survivorBasicPensionFirstSecondChildAddition
+        : config.survivorBasicPensionThirdAndLaterChildAddition,
+  ).reduce((total, amount) => total + amount, 0);
+
+  return {
+    amount: config.survivorBasicPensionBaseAmount + childAddition,
+    eligibleChildren,
+  };
+}
+function survivorEmployeesPensionAmount(input: UserInput, standard: number) {
+  if (input.insuranceStatus !== "employee") return null;
+  const config = pensionBenefits.survivorDisabilityPension;
+  return Math.round(
+    standard *
+      config.survivorEmployeesPensionRemunerationCoefficient *
+      config.deemedEnrollmentMonths *
+      config.survivorEmployeesPensionRate,
+  );
+}
+function survivorPensionEstimate(input: UserInput, standard: number) {
+  const basic = survivorBasicPensionAmount(input);
+  const employees = survivorEmployeesPensionAmount(input, standard);
+  const total = basic.amount + (employees ?? 0);
+  const breakdown = [
+    basic.amount > 0
+      ? `遺族基礎年金：${shortAnnualAmount(basic.amount)}`
+      : "遺族基礎年金：対象児童なしのため原則対象外",
+    employees !== null
+      ? `遺族厚生年金：${shortAnnualAmount(employees)}`
+      : "遺族厚生年金：会社の社会保険加入ではないため金額は断定せず、年金加入歴・納付要件の確認が必要です",
+  ];
+  const supplementalNotice = [
+    "これは請求額の確定計算ではなく、現在の入力条件から見た目安です。",
+    "子の判定は、生年月日入力がないため18歳以下で簡易判定しています（厳密には18歳到達年度の3月31日まで）。",
+    "遺族厚生年金は、過去の標準報酬月額・賞与・加入月数・短期/長期要件で変わります。",
+    "300月みなしは、一定要件に該当する場合の扱いです。",
+    "18歳年度末を過ぎた子でも、20歳未満で障害等級1級・2級に該当する場合は対象になることがあります。",
+    "障害等級は病名ではなく状態で見ます。例：重い視覚・聴覚障害、手足の著しい障害、日常生活が大きく制限される身体・精神の障害など。",
+  ].join(" ");
+
+  if (total === 0) {
+    return {
+      estimatedAmount:
+        "金額は要確認（年金加入歴・保険料納付要件、配偶者・子の状況を年金事務所で確認してください）",
+      listAmount: "要確認",
+      amountBreakdown: breakdown,
+      supplementalNotice,
+    };
+  }
+
+  return {
+    estimatedAmount: `${shortAnnualAmount(total)}（月 約${(total / 12 / 10000).toFixed(1)}万円）`,
+    listAmount: shortAnnualAmount(total),
+    amountBreakdown: breakdown,
+    supplementalNotice,
+  };
+}
 function monthlyEmploymentBenefit(
   monthlyIncome: number,
   config: EmploymentBenefitRate,
@@ -290,12 +359,7 @@ function amountAndAccuracy(
         accuracy: input.insuranceStatus === "national" ? "要確認" : "高精度",
       };
     case "survivor-disability-pension":
-      return {
-        estimatedAmount:
-          pensionBenefits.survivorDisabilityPension.estimateLabel,
-        listAmount: "条件あり",
-        accuracy: "要確認",
-      };
+      return { ...survivorPensionEstimate(input, standard), accuracy: "要確認" };
     default:
       return {
         estimatedAmount: "要確認",
@@ -455,18 +519,24 @@ function detailFor(id: string, input: UserInput) {
       ],
     },
     "survivor-disability-pension": {
-      eligibilityPossibility: "加入歴・家族構成・障害等級により要確認",
-      reason: "死亡・障害時に本人や家族の生活を支える年金制度です。",
+      eligibilityPossibility:
+        input.hasChildren || employee
+          ? "遺族基礎年金または遺族厚生年金の対象になる可能性"
+          : "年金加入歴・保険料納付要件を要確認",
+      reason: "死亡時に子のある配偶者または子、一定の遺族の生活を支える年金制度です。",
       variables: [
         "年金加入期間",
         "保険料納付要件",
         "配偶者・子どもの有無と年齢",
-        "障害等級",
+        "過去の標準報酬月額・賞与",
+        "短期要件・長期要件",
+        "子の障害等級",
       ],
       nextChecks: [
         "ねんきん定期便",
         "配偶者・子どもの情報",
-        "初診日",
+        "子どもの生年月日",
+        "障害等級に該当する子の有無",
         "年金事務所",
       ],
     },

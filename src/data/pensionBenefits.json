@@ -1,3 +1,11 @@
 {
-  "survivorDisabilityPension": { "estimateLabel": "概算・要確認" }
+  "survivorDisabilityPension": {
+    "estimateLabel": "概算・要確認",
+    "survivorBasicPensionBaseAmount": 847300,
+    "survivorBasicPensionFirstSecondChildAddition": 243800,
+    "survivorBasicPensionThirdAndLaterChildAddition": 81300,
+    "survivorEmployeesPensionRemunerationCoefficient": 0.005481,
+    "deemedEnrollmentMonths": 300,
+    "survivorEmployeesPensionRate": 0.75
+  }
 }

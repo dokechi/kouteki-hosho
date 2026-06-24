@@ -35,6 +35,7 @@ export type BenefitResult = Benefit & {
   estimatedAmount: string;
   listAmount: string;
   accuracy: AccuracyLabel;
+  amountBreakdown?: string[];
   eligibilityPossibility: string;
   reason: string;
   variables: string[];

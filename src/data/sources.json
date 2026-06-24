@@ -64,9 +64,9 @@
   },
   {
     "id": "survivor-disability-pension",
-    "sourceName": "日本年金機構 年金の給付に関する情報",
-    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/index.html",
-    "checkedAt": "2026-06-22",
-    "caution": "遺族年金・障害年金は加入歴、保険料納付要件、初診日、障害等級、配偶者・子の有無などで大きく変わります。MVPでは要確認カードとして表示します。"
+    "sourceName": "日本年金機構 遺族基礎年金・遺族厚生年金・報酬比例部分・障害等級表",
+    "sourceUrl": "https://www.nenkin.go.jp/service/jukyu/izokunenkin/index.html",
+    "checkedAt": "2026-06-24",
+    "caution": "遺族基礎年金、遺族厚生年金、報酬比例部分、障害等級表を参照しています。実際の支給可否・金額は年金加入歴、保険料納付要件、標準報酬月額・賞与、加入月数、短期/長期要件、配偶者・子の状況、障害等級などで変わります。"
   }
 ]

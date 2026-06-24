@@ -17,6 +17,11 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
         <section>
           <h3>概算金額・目安額</h3>
           <p className="amountLine">{benefit.estimatedAmount}</p>
+          {benefit.amountBreakdown && (
+            <ul>
+              {benefit.amountBreakdown.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          )}
           {benefit.supplementalNotice && <p className="small">{benefit.supplementalNotice}</p>}
           <p className="small">目安の精度：{benefit.accuracy}</p>
         </section>
