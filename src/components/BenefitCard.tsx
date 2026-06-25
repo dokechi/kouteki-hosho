@@ -1,7 +1,16 @@
+import calculationNotes from "@/data/calculationNotes.json";
 import type { BenefitResult } from "@/lib/types";
+
+type CalculationNote = {
+  title: string;
+  body: string;
+};
+
+const notesByBenefitId = calculationNotes as Record<string, CalculationNote[]>;
 
 export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
   const hasSourceLinks = Boolean(benefit.sourceLinks?.length);
+  const notes = notesByBenefitId[benefit.id] ?? [];
 
   return (
     <details className="benefitRow">
@@ -41,6 +50,19 @@ export function BenefitCard({ benefit }: { benefit: BenefitResult }) {
           <ul>{benefit.nextChecks.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
         <p className="small"><b>計算メモ：</b>{benefit.note}</p>
+        {notes.length > 0 && (
+          <section className="calculationNotes" aria-labelledby={`calculation-notes-${benefit.id}`}>
+            <h3 id={`calculation-notes-${benefit.id}`}>この計算の見方</h3>
+            <div className="calculationNoteList">
+              {notes.map((note) => (
+                <article className="calculationNote" key={note.title}>
+                  <h4>{note.title}</h4>
+                  <p>{note.body}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
         <div className="sourceBox">
           <p><b>出典：</b></p>
           {hasSourceLinks ? (

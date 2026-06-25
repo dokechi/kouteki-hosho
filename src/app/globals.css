@@ -39,6 +39,9 @@ button, .button { display: inline-block; width: 100%; border: 0; border-radius: 
 .benefitDetail p { margin: 0; }
 .amountLine { font-size: 1.2rem; font-weight: 900; }
 .small, .sourceBox { font-size: .95rem; }
+.calculationNotes { border: 1px solid #dce6f4; border-radius: 12px; background: #f6f9ff; padding: 14px; }
+.calculationNoteList { display: grid; gap: 12px; }
+.calculationNote h4 { margin: 0 0 4px; font-size: 1rem; color: #174a92; }
 .sourceBox { border-top: 1px solid #edf0f4; margin-top: 4px; padding-top: 12px; }
 .sourceBox p { margin: 4px 0; }
 .sourceList { padding-left: 20px; }
