@@ -40,6 +40,7 @@ type Under70 = {
   formulaText: string;
   multiMonthLimit: number;
 };
+const PENSION_STANDARD_MONTHLY_MIN = 88000;
 const PENSION_STANDARD_MONTHLY_CAP = 650000;
 const AGE_70_PLUS_HIGH_COST_NOTICE =
   "70歳以上は所得区分・外来/入院・世帯単位で上限が変わるため、加入先保険者で確認してください。";
@@ -157,7 +158,10 @@ function survivorBasicPensionAmount(input: UserInput) {
   };
 }
 function pensionStandardMonthly(standard: number) {
-  return Math.min(standard, PENSION_STANDARD_MONTHLY_CAP);
+  return Math.min(
+    Math.max(standard, PENSION_STANDARD_MONTHLY_MIN),
+    PENSION_STANDARD_MONTHLY_CAP,
+  );
 }
 function survivorEmployeesPensionAmount(input: UserInput, standard: number) {
   if (input.insuranceStatus !== "employee") return null;
@@ -322,17 +326,22 @@ function statusLabel(status: InsuranceStatus) {
   )[status];
 }
 
-function childAllowanceMonthlyAmount(age: number, childIndex: number) {
+const CHILD_ALLOWANCE_SIBLING_COUNT_AGE_MAX = 22;
+
+function childAllowanceMonthlyAmount(age: number, childOrderIndex: number) {
   if (age > childAllowance.eligibleAgeMax) return 0;
-  if (childIndex >= 2) return childAllowance.amounts.thirdChildOrLater;
+  if (childOrderIndex >= 2) return childAllowance.amounts.thirdChildOrLater;
   if (age < 3) return childAllowance.amounts.under3;
   return childAllowance.amounts.age3ToHighSchool;
 }
 function childAllowanceTotal(childAges: number[]) {
-  return childAges.reduce(
-    (total, age, index) => total + childAllowanceMonthlyAmount(age, index),
-    0,
-  );
+  return childAges
+    .filter((age) => age <= CHILD_ALLOWANCE_SIBLING_COUNT_AGE_MAX)
+    .toSorted((a, b) => b - a)
+    .reduce(
+      (total, age, index) => total + childAllowanceMonthlyAmount(age, index),
+      0,
+    );
 }
 function childAllowanceEstimate(input: UserInput) {
   const eligibleChildren = input.childAges.filter(
@@ -664,7 +673,7 @@ function detailFor(id: string, input: UserInput) {
 }
 
 function noteFor(input: UserInput, standard: number) {
-  return `${input.age}歳、${statusLabel(input.insuranceStatus)}、年収/所得${yen.format(input.annualIncome)}、${estimatedMonthlyIncomeBasis(input)}、推定標準報酬月額${yen.format(standard)}でブラウザ内概算しました。厚生年金系の概算では標準報酬月額上限${yen.format(PENSION_STANDARD_MONTHLY_CAP)}を超えないように計算します。実際は加入先・勤務先・制度改正で変わります。`;
+  return `${input.age}歳、${statusLabel(input.insuranceStatus)}、年収/所得${yen.format(input.annualIncome)}、${estimatedMonthlyIncomeBasis(input)}、推定標準報酬月額${yen.format(standard)}でブラウザ内概算しました。厚生年金系の概算では標準報酬月額を${yen.format(PENSION_STANDARD_MONTHLY_MIN)}〜${yen.format(PENSION_STANDARD_MONTHLY_CAP)}の範囲に丸めて計算します。実際は加入先・勤務先・制度改正で変わります。`;
 }
 function withSource(benefit: BenefitCardData): Benefit {
   const source = sourceByBenefitId.get(benefit.id);
