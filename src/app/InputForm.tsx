@@ -11,6 +11,7 @@ type FormInput = {
   age: string;
   insuranceStatus: "" | InsuranceStatus;
   annualIncome: string;
+  monthlySalary: string;
   hasSpouse: SelectValue;
   hasChildren: SelectValue;
   childrenCount: string;
@@ -21,6 +22,7 @@ const initialInput: FormInput = {
   age: "",
   insuranceStatus: "",
   annualIncome: "",
+  monthlySalary: "",
   hasSpouse: "",
   hasChildren: "",
   childrenCount: "",
@@ -37,16 +39,19 @@ function validateInput(input: FormInput): { errors: string[]; userInput: UserInp
   const errors: string[] = [];
   const age = toNumber(input.age);
   const annualIncomeManYen = toNumber(input.annualIncome);
+  const monthlySalaryManYen = toNumber(input.monthlySalary);
   const childrenCount = toNumber(input.childrenCount);
 
   if (age === null || age < 0) errors.push("年齢を入力してください");
   if (!input.insuranceStatus) errors.push("加入状況を選んでください");
   if (annualIncomeManYen === null || annualIncomeManYen < 0) errors.push("年収を入力してください");
+  if (monthlySalaryManYen !== null && monthlySalaryManYen < 0) errors.push("月給は0以上で入力してください");
   if (!input.hasSpouse) errors.push("配偶者の有無を選んでください");
   if (!input.hasChildren) errors.push("子どもの有無を選んでください");
 
   const hasChildren = input.hasChildren === "yes";
   const annualIncome = annualIncomeManYen === null ? null : annualIncomeManYen * 10000;
+  const monthlySalary = monthlySalaryManYen === null ? undefined : monthlySalaryManYen * 10000;
   if (hasChildren) {
     if (childrenCount === null || childrenCount < 1 || childrenCount > 10 || !Number.isInteger(childrenCount)) errors.push("子どもの人数を入力してください");
 
@@ -60,6 +65,7 @@ function validateInput(input: FormInput): { errors: string[]; userInput: UserInp
           age: age!,
           insuranceStatus: input.insuranceStatus as InsuranceStatus,
           annualIncome: annualIncome!,
+          monthlySalary,
           hasSpouse: input.hasSpouse === "yes",
           hasChildren,
           childrenCount: childrenCount!,
@@ -77,6 +83,7 @@ function validateInput(input: FormInput): { errors: string[]; userInput: UserInp
       age: age!,
       insuranceStatus: input.insuranceStatus as InsuranceStatus,
       annualIncome: annualIncome!,
+      monthlySalary,
       hasSpouse: input.hasSpouse === "yes",
       hasChildren,
       childrenCount: 0,
@@ -90,7 +97,7 @@ export function InputForm() {
   const [errors, setErrors] = useState<string[]>([]);
   const [validatedInput, setValidatedInput] = useState<UserInput | null>(null);
   const results = useMemo(() => validatedInput ? calculateBenefits(validatedInput) : [], [validatedInput]);
-  const updateNumber = (key: "age" | "annualIncome" | "childrenCount") => (value: string) => {
+  const updateNumber = (key: "age" | "annualIncome" | "monthlySalary" | "childrenCount") => (value: string) => {
     setInput((current) => {
       if (key !== "childrenCount") return { ...current, [key]: value };
       const childrenCount = toNumber(value);
@@ -130,6 +137,7 @@ export function InputForm() {
       <form className="formGrid" onSubmit={submitForm} noValidate>
         <label>年齢<input type="number" min="0" placeholder="例：31" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
         <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="384" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
+        <label>月給（万円・任意）<span className="inputWithUnit"><input type="number" min="0" step="1" placeholder="32" value={input.monthlySalary} onChange={(e) => updateNumber("monthlySalary")(e.target.value)} /><span className="unitText">万円</span></span><span className="helpText">入力した場合、年収÷12より優先して標準報酬月額の推定に使います。</span></label>
         <label>加入状況<select value={input.insuranceStatus} onChange={(e) => setInput({ ...input, insuranceStatus: e.target.value as FormInput["insuranceStatus"] })}>
           <option value="">選択してください</option>
           <option value="employee">会社の社会保険に入っている</option>
