@@ -4,6 +4,7 @@ export type UserInput = {
   age: number;
   insuranceStatus: InsuranceStatus;
   annualIncome: number;
+  monthlySalary?: number;
   hasSpouse: boolean;
   hasChildren: boolean;
   childrenCount: number;
