@@ -44,6 +44,8 @@ const PENSION_STANDARD_MONTHLY_MIN = 88000;
 const PENSION_STANDARD_MONTHLY_CAP = 650000;
 const AGE_70_PLUS_HIGH_COST_NOTICE =
   "70歳以上は所得区分・外来/入院・世帯単位で上限が変わるため、加入先保険者で確認してください。";
+const NON_EMPLOYEE_HIGH_COST_NOTICE =
+  "国保・扶養・加入状況不明の場合は、所得区分・世帯状況・住民税非課税区分などで上限額が変わるため、加入先保険者または自治体で確認してください。";
 type EmploymentBenefitRate = {
   monthlySalaryRate: number;
   monthlyPaymentCap?: number;
@@ -79,20 +81,15 @@ function estimateStandardGrade(monthlyIncome: number) {
 
 function highCostMedicalLimit(input: UserInput, standard: number) {
   if (input.age >= 70) return AGE_70_PLUS_HIGH_COST_NOTICE;
+  if (input.insuranceStatus !== "employee") return NON_EMPLOYEE_HIGH_COST_NOTICE;
 
-  const bracket =
-    input.insuranceStatus === "employee"
-      ? (highCostMedical.under70 as Under70[]).find(
-          ({ standardMonthlyMin, standardMonthlyMax }) => {
-            if (standardMonthlyMin === null) return false;
-            if (standardMonthlyMax === null)
-              return standard >= standardMonthlyMin;
-            return (
-              standard >= standardMonthlyMin && standard <= standardMonthlyMax
-            );
-          },
-        )
-      : undefined;
+  const bracket = (highCostMedical.under70 as Under70[]).find(
+    ({ standardMonthlyMin, standardMonthlyMax }) => {
+      if (standardMonthlyMin === null) return false;
+      if (standardMonthlyMax === null) return standard >= standardMonthlyMin;
+      return standard >= standardMonthlyMin && standard <= standardMonthlyMax;
+    },
+  );
   if (bracket)
     return `区分${bracket.category}：${bracket.formulaText}（多数回該当 ${yen.format(bracket.multiMonthLimit)}）`;
   const incomeBracket = highCostMedical.incomeBrackets.find(
@@ -379,7 +376,9 @@ function amountAndAccuracy(
         listAmount:
           input.age >= 70
             ? "加入先保険者で確認"
-            : `月 ${limit.replace(/^区分[^：]+：/, "")}`,
+            : input.insuranceStatus !== "employee"
+              ? "加入先で確認"
+              : `月 ${limit.replace(/^区分[^：]+：/, "")}`,
         accuracy:
           input.age >= 70
             ? "要確認"
