@@ -137,7 +137,7 @@ export function InputForm() {
       <form className="formGrid" onSubmit={submitForm} noValidate>
         <label>年齢<input type="number" min="0" placeholder="例：31" value={input.age} onChange={(e) => updateNumber("age")(e.target.value)} /></label>
         <label>年収（万円）<span className="inputWithUnit"><input type="number" min="0" step="10" placeholder="384" value={input.annualIncome} onChange={(e) => updateNumber("annualIncome")(e.target.value)} /><span className="unitText">万円</span></span></label>
-        <label>月給（万円・任意）<span className="inputWithUnit"><input type="number" min="0" step="1" placeholder="32" value={input.monthlySalary} onChange={(e) => updateNumber("monthlySalary")(e.target.value)} /><span className="unitText">万円</span></span><span className="helpText">入力した場合、年収÷12より優先して標準報酬月額の推定に使います。</span></label>
+        <label>月給の目安（万円・任意）<span className="inputWithUnit"><input type="number" min="0" step="1" placeholder="32" value={input.monthlySalary} onChange={(e) => updateNumber("monthlySalary")(e.target.value)} /><span className="unitText">万円</span></span><span className="helpText">賞与を除く、給与明細の総支給額に近い金額。残業代・通勤手当を含めてOKです。空欄なら年収÷12で概算します。</span></label>
         <label>加入状況<select value={input.insuranceStatus} onChange={(e) => setInput({ ...input, insuranceStatus: e.target.value as FormInput["insuranceStatus"] })}>
           <option value="">選択してください</option>
           <option value="employee">会社の社会保険に入っている</option>
