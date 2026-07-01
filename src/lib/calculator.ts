@@ -334,7 +334,7 @@ function childAllowanceMonthlyAmount(age: number, childOrderIndex: number) {
 function childAllowanceTotal(childAges: number[]) {
   return childAges
     .filter((age) => age <= CHILD_ALLOWANCE_SIBLING_COUNT_AGE_MAX)
-    .toSorted((a, b) => b - a)
+    .sort((a, b) => b - a)
     .reduce(
       (total, age, index) => total + childAllowanceMonthlyAmount(age, index),
       0,
@@ -541,7 +541,7 @@ function detailFor(id: string, input: UserInput) {
     },
     "maternity-allowance": {
       eligibilityPossibility: employee
-        ? "対象になる可能性が高い"
+        ? "本人が出産のため休業する場合、対象になる可能性があります"
         : "本人が健康保険の被保険者でない場合は対象外または要確認",
       reason: "出産のため休業し給与が十分に出ない期間の所得補償です。",
       variables: [
