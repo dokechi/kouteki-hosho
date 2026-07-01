@@ -4,7 +4,7 @@
     "sourceName": "全国健康保険協会 令和8年度保険料額表",
     "sourceUrl": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/premium_prefectures/r08/index.html",
     "checkedAt": "2026-06-22",
-    "caution": "標準報酬月額は勤務先の届出、定時決定、随時改定、賞与の有無などで変わります。本アプリでは入力した年収を月額換算して等級を推定します。"
+    "caution": "標準報酬月額は勤務先の届出、定時決定、随時改定、賞与の有無などで変わります。本アプリでは、月給の目安が入力されている場合はその金額を、未入力の場合は年収を月額換算した金額を使って等級を推定します。"
   },
   {
     "id": "high-cost-medical-expense",
